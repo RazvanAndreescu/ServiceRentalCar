@@ -9,5 +9,5 @@ public class ServiceRentalCarApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ServiceRentalCarApplication.class, args);
 	}
-
+	/**/
 }
