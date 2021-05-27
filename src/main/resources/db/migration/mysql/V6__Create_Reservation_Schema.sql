@@ -12,6 +12,6 @@ CREATE TABLE IF NOT EXISTS reservation
     FOREIGN KEY (customerId) REFERENCES customer(customerId),
 
     carId INT,
-    FOREIGN KEY (carId) REFERENCES car(carId),
+    FOREIGN KEY (carId) REFERENCES car(carId)
 
     ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
