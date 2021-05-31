@@ -35,6 +35,7 @@ public class Reservation {
     private Customer customer;
 
 
-    @OneToMany(mappedBy = "reservation")
-    private List<Car> cars;
+    @ManyToOne
+    @JoinColumn(name="carid")
+    private Car car;
 }
