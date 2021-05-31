@@ -27,4 +27,15 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer")
     private List<Reservation> reservations;
+
+    public Customer() {
+    }
+
+    public Customer(int customerId, String nameCustomer, String email, int drivingExperience, List<Reservation> reservations) {
+        this.customerId = customerId;
+        this.nameCustomer = nameCustomer;
+        this.email = email;
+        this.drivingExperience = drivingExperience;
+        this.reservations = reservations;
+    }
 }
