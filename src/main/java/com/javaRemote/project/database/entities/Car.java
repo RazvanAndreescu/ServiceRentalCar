@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -37,9 +38,8 @@ public class Car {
     @JoinColumn(name="branchid")
     private Branch branch;
 
-    @ManyToOne
-    @JoinColumn(name="reservationid")
-    private Reservation reservation;
+    @OneToMany(mappedBy = "car")
+    private List<Reservation> reservations;
 
 
 }
