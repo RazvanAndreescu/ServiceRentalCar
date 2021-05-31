@@ -1,5 +1,6 @@
 package com.javaRemote.project.database.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,8 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "branch")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Branch {
 
     @Id
