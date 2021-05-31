@@ -27,14 +27,14 @@ public class Reservation {
     private int price;
 
     @OneToOne
-    @JoinColumn(name="branchId")
+    @JoinColumn(name="branchid")
     private Branch branch;
 
     @ManyToOne
-    @JoinColumn(name="customerId")
+    @JoinColumn(name="customerid")
     private Customer customer;
 
-
-    @OneToMany(mappedBy = "reservation")
-    private List<Car> cars;
+    @ManyToOne
+    @JoinColumn(name = "carid")
+    private Car car;
 }
