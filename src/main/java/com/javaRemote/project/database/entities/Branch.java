@@ -1,5 +1,6 @@
 package com.javaRemote.project.database.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,8 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "branch")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Branch {
 
     @Id
@@ -20,7 +23,7 @@ public class Branch {
     private String address;
 
     @ManyToOne
-    @JoinColumn(name="rentalId")
+    @JoinColumn(name="rentalid")
     private Rental rental;
 
     @OneToMany(mappedBy = "branch")
