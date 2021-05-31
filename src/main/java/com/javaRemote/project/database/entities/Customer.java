@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -24,9 +25,6 @@ public class Customer {
     @Column(name = "drivingexperience")
     private int drivingExperience;
 
-    @ManyToOne
-    @JoinColumn(name = "reservationId")
-    private Reservation reservation;
-
-
+    @OneToMany(mappedBy = "customer")
+    private List<Reservation> reservations;
 }

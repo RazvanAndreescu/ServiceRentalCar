@@ -30,11 +30,11 @@ public class Reservation {
     @JoinColumn(name="branchId")
     private Branch branch;
 
-    @OneToMany(mappedBy = "reservation")
-    private List<Customer> customers;
+    @ManyToOne
+    @JoinColumn(name="customerId")
+    private Customer customer;
+
 
     @OneToMany(mappedBy = "reservation")
     private List<Car> cars;
-
-
 }
