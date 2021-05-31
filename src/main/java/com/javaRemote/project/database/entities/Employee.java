@@ -22,7 +22,7 @@ public class Employee {
     private String roleEmployee;
 
     @ManyToOne
-    @JoinColumn(name="branchId")
+    @JoinColumn(name="branchid")
     private Branch branch;
 
 

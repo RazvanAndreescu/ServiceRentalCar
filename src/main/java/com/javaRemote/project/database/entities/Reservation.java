@@ -27,11 +27,11 @@ public class Reservation {
     private int price;
 
     @OneToOne
-    @JoinColumn(name="branchId")
+    @JoinColumn(name="branchid")
     private Branch branch;
 
     @ManyToOne
-    @JoinColumn(name="customerId")
+    @JoinColumn(name="customerid")
     private Customer customer;
 
 

@@ -20,7 +20,7 @@ public class Branch {
     private String address;
 
     @ManyToOne
-    @JoinColumn(name="rentalId")
+    @JoinColumn(name="rentalid")
     private Rental rental;
 
     @OneToMany(mappedBy = "branch")

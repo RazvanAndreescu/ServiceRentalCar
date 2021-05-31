@@ -34,11 +34,11 @@ public class Car {
     private int price;
 
     @ManyToOne
-    @JoinColumn(name="branchId")
+    @JoinColumn(name="branchid")
     private Branch branch;
 
     @ManyToOne
-    @JoinColumn(name="reservationId")
+    @JoinColumn(name="reservationid")
     private Reservation reservation;
 
 
