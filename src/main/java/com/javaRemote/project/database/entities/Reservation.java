@@ -9,22 +9,21 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
-@Table(name = "Reservations")
+@Table(name = "reservation")
 public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Reservation_ID")
+    @Column(name = "reservationid")
     private int reservationId;
 
-    @Column(name = "Reservation_startDate")
+    @Column(name = "startdate")
     private Date startDate;
 
-    @Column(name = "Reservation_endDate")
+    @Column(name = "enddate")
     private Date endDate;
 
-    @Column(name = "Reservation_Price")
+    @Column(name = "price")
     private int price;
 
     @OneToOne
@@ -37,10 +36,5 @@ public class Reservation {
     @OneToMany(mappedBy = "reservation")
     private List<Car> cars;
 
-    public Reservation(int reservationId, Date startDate, Date endDate, int price) {
-        this.reservationId = reservationId;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.price = price;
-    }
+
 }

@@ -8,16 +8,15 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
-@Table(name = "Branches")
+@Table(name = "branch")
 public class Branch {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Branch_ID")
+    @Column(name = "branchid")
     private int branchId;
 
-    @Column(name = "Branch_Address")
+    @Column(name = "address")
     private String address;
 
     @ManyToOne
@@ -34,8 +33,5 @@ public class Branch {
     private Reservation reservation;
 
 
-    public Branch(int branchId, String address) {
-        this.branchId = branchId;
-        this.address = address;
-    }
+
 }

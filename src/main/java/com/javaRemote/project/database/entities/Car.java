@@ -7,31 +7,30 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@NoArgsConstructor
-@Table(name = "Cars")
+@Table(name = "car")
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Car_ID")
+    @Column(name = "carid")
     private int carId;
 
-    @Column(name = "Car_Model")
+    @Column(name = "model")
     private String model;
 
-    @Column(name = "Car_Transmission")
+    @Column(name = "transmission")
     private String transmission;
 
-    @Column(name = "Car_BodyType")
+    @Column(name = "bodytype")
     private String bodyType;
 
-    @Column(name = "Car_ProductionDate")
+    @Column(name = "yearcar")
     private String yearCar;
 
-    @Column(name = "Car_Status")
+    @Column(name = "status")
     private String status;
 
-    @Column(name = "Car_Price")
+    @Column(name = "price")
     private int price;
 
     @ManyToOne
@@ -42,13 +41,5 @@ public class Car {
     @JoinColumn(name="reservationId")
     private Reservation reservation;
 
-    public Car(int carId, String model, String transmission, String bodyType, String yearCar, String status, int price) {
-        this.carId = carId;
-        this.model = model;
-        this.transmission = transmission;
-        this.bodyType = bodyType;
-        this.yearCar = yearCar;
-        this.status = status;
-        this.price = price;
-    }
+
 }

@@ -7,19 +7,18 @@ import javax.persistence.*;
 
 @Entity
 @Data
-@NoArgsConstructor
-@Table(name = "Employees")
+@Table(name = "employee")
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Employee_ID")
+    @Column(name = "employeeid")
     private int employeeId;
 
-    @Column(name = "Employee_Name")
+    @Column(name = "nameemployee")
     private String nameEmployee;
 
-    @Column(name = "Employee_Role")
+    @Column(name = "roleemployee")
     private String roleEmployee;
 
     @ManyToOne
@@ -27,9 +26,4 @@ public class Employee {
     private Branch branch;
 
 
-    public Employee(int employeeId, String nameEmployee, String roleEmployee) {
-        this.employeeId = employeeId;
-        this.nameEmployee = nameEmployee;
-        this.roleEmployee = roleEmployee;
-    }
 }
