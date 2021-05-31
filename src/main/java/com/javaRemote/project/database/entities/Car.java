@@ -1,9 +1,11 @@
 package com.javaRemote.project.database.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -34,12 +36,11 @@ public class Car {
     private int price;
 
     @ManyToOne
-    @JoinColumn(name="branchId")
+    @JoinColumn(name="branchid")
     private Branch branch;
 
-    @ManyToOne
-    @JoinColumn(name="reservationId")
-    private Reservation reservation;
+    @OneToMany(mappedBy = "car")
+    private List<Reservation> reservations;
 
 
 }

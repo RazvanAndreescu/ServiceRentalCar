@@ -10,8 +10,6 @@ import java.util.List;
 @Entity
 @Data
 @Table(name = "branch")
-@AllArgsConstructor
-@NoArgsConstructor
 public class Branch {
 
     @Id
