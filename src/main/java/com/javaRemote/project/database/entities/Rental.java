@@ -8,35 +8,29 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
-@Table(name = "Rental")
+
+@Table(name = "rental")
 public class Rental {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Rental_ID")
+    @Column(name = "rentalid")
     private int rentalId;
 
-    @Column(name = "Rental_Name")
+    @Column(name = "namerental")
     private String nameRental;
 
-    @Column(name = "URL")
+    @Column(name = "internetdomain")
     private String internetDomain;
 
-    @Column(name = "Address")
+    @Column(name = "contactaddress")
     private String contactAddress;
 
-    @Column(name = "Owner")
+    @Column(name = "owner")
     private String owner;
 
     @OneToMany(mappedBy = "rental")
     private List<Branch> branches;
 
-    public Rental(int rentalId, String nameRental, String internetDomain, String contactAddress, String owner) {
-        this.rentalId = rentalId;
-        this.nameRental = nameRental;
-        this.internetDomain = internetDomain;
-        this.contactAddress = contactAddress;
-        this.owner = owner;
-    }
+
 }
