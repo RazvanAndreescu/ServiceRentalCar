@@ -1,7 +1,7 @@
 CREATE TABLE IF NOT EXISTS branch
 (
     branchId INT PRIMARY KEY AUTO_INCREMENT,
-    address VARCHAR (30),
+    address VARCHAR (60),
 
     rentalId INT,
 
