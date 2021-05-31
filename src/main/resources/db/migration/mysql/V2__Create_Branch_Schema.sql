@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS branch
     address
     VARCHAR
 (
-    30
+    50
 ),
     rentalId INT,
     FOREIGN KEY
