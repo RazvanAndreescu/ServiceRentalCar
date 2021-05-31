@@ -1,8 +1,6 @@
 package com.javaRemote.project.database.entities;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 
 @Entity
