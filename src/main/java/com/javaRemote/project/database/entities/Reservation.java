@@ -34,8 +34,7 @@ public class Reservation {
     @JoinColumn(name="customerid")
     private Customer customer;
 
-
     @ManyToOne
-    @JoinColumn(name="carid")
+    @JoinColumn(name = "carid")
     private Car car;
 }
