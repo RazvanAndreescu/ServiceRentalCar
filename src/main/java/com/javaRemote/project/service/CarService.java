@@ -21,7 +21,6 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    //Read
     public List<?> getAllCars(){
         return carRepository.findAll();
     }
