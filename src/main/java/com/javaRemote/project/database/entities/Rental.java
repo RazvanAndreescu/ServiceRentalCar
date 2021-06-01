@@ -1,8 +1,8 @@
 package com.javaRemote.project.database.entities;
 
-
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
 import java.util.List;
 
@@ -10,6 +10,7 @@ import java.util.List;
 @Setter
 @Getter
 @Table(name = "rental")
+@Proxy(lazy = false)
 public class Rental {
 
     @Id
