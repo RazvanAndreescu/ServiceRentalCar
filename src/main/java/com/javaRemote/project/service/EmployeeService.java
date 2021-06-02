@@ -1,7 +1,7 @@
 package com.javaRemote.project.service;
 
 import com.javaRemote.project.database.entities.Employee;
-import com.javaRemote.project.repository.EmployeeRepository;
+import com.javaRemote.project.database.repository.EmployeeRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
