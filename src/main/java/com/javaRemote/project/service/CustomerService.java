@@ -1,7 +1,7 @@
 package com.javaRemote.project.service;
 
 import com.javaRemote.project.database.entities.Customer;
-import com.javaRemote.project.database.repository.CustomerRepository;
+import com.javaRemote.project.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
