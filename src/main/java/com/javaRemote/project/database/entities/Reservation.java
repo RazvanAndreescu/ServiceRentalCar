@@ -1,11 +1,17 @@
 package com.javaRemote.project.database.entities;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Proxy(lazy = false)
 @Table(name = "reservation")
 public class Reservation {
 
@@ -23,7 +29,7 @@ public class Reservation {
     @Column(name = "price")
     private int price;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name="branchid")
     private Branch branch;
 
@@ -34,4 +40,14 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "carid")
     private Car car;
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "reservationId=" + reservationId +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", price=" + price +
+                '}';
+    }
 }

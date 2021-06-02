@@ -1,12 +1,18 @@
 package com.javaRemote.project.database.entities;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Setter
+@Getter
 @Table(name = "rental")
+@Proxy(lazy = false)
 public class Rental {
 
     @Id
@@ -26,8 +32,18 @@ public class Rental {
     @Column(name = "owner")
     private String owner;
 
+//    , fetch = FetchType.EAGER, cascade = CascadeType.ALL
     @OneToMany(mappedBy = "rental")
     private List<Branch> branches;
 
-
+    @Override
+    public String toString() {
+        return "Rental{" +
+                "rentalId=" + rentalId +
+                ", nameRental='" + nameRental + '\'' +
+                ", internetDomain='" + internetDomain + '\'' +
+                ", contactAddress='" + contactAddress + '\'' +
+                ", owner='" + owner + '\'' +
+                '}';
+    }
 }

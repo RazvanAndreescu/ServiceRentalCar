@@ -1,11 +1,17 @@
 package com.javaRemote.project.database.entities;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Proxy(lazy = false)
 @Table(name = "branch")
 public class Branch {
 
@@ -27,9 +33,14 @@ public class Branch {
     @OneToMany(mappedBy = "branch")
     private List<Employee> employees;
 
-    @OneToOne(mappedBy = "branch")
-    private Reservation reservation;
+    @OneToMany(mappedBy = "branch")
+    private List<Reservation> reservations;
 
-
-
+    @Override
+    public String toString() {
+        return "Branch{" +
+                "branchId=" + branchId +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

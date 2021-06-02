@@ -1,11 +1,17 @@
 package com.javaRemote.project.database.entities;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
+@Proxy(lazy = false)
 @Table(name = "car")
 public class Car {
 
@@ -40,4 +46,16 @@ public class Car {
     private List<Reservation> reservations;
 
 
+    @Override
+    public String toString() {
+        return "Car{" +
+                "carId=" + carId +
+                ", model='" + model + '\'' +
+                ", transmission='" + transmission + '\'' +
+                ", bodyType='" + bodyType + '\'' +
+                ", yearCar='" + yearCar + '\'' +
+                ", status='" + status + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }
