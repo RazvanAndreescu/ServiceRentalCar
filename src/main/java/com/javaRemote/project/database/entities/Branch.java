@@ -3,6 +3,8 @@ package com.javaRemote.project.database.entities;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Proxy;
+
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,6 +13,7 @@ import java.util.List;
 @Setter
 @Table(name = "branch")
 @Proxy(lazy = false)
+
 public class Branch {
 
     @Id
