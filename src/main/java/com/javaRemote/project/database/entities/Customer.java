@@ -1,14 +1,16 @@
 package com.javaRemote.project.database.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @Table(name = "customer")
+@Proxy(lazy = false)
 public class Customer {
 
     @Id
@@ -27,4 +29,14 @@ public class Customer {
 
     @OneToMany(mappedBy = "customer")
     private List<Reservation> reservations;
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", nameCustomer='" + nameCustomer + '\'' +
+                ", email='" + email + '\'' +
+                ", drivingExperience=" + drivingExperience +
+                '}';
+    }
 }
