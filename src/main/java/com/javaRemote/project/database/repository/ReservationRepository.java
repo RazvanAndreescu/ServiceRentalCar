@@ -1,4 +1,4 @@
-package com.javaRemote.project.repository;
+package com.javaRemote.project.database.repository;
 
 import com.javaRemote.project.database.entities.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;

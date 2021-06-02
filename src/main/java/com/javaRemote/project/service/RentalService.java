@@ -1,7 +1,7 @@
 package com.javaRemote.project.service;
 
 import com.javaRemote.project.database.entities.Rental;
-import com.javaRemote.project.repository.RentalRepository;
+import com.javaRemote.project.database.repository.RentalRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,25 +9,27 @@ import java.util.List;
 @Service
 public class RentalService {
 
-    private RentalRepository rentalRepository;
+    private final RentalRepository rentalRepository;
 
-    public RentalService(RentalRepository rentalRepository) {
-        this.rentalRepository = rentalRepository;
+    public RentalService(RentalRepository rentalRepository){
+        this.rentalRepository=rentalRepository;
     }
 
-
-    //Create
-    public Rental create(Rental rental) {
+    //CREATE
+    public Rental createRental(Rental rental){
         return rentalRepository.save(rental);
     }
 
 
-    //Read
-    public List<Rental> getAllRentals() {
+    //READ
+    //    List<Rental>  // String
+    public List<Rental> getRentals(){
+//        return rentalRepository.findAll().toString();
         return rentalRepository.findAll();
+
     }
 
-    public List<Rental> getRentalsByNameRental(String nameRental) {
+    public List<Rental> getRentalsByNameRental(String nameRental){
         return rentalRepository.getRentalByNameRental(nameRental);
     }
 
@@ -43,42 +45,42 @@ public class RentalService {
         return rentalRepository.getRentalByOwner(owner);
     }
 
-
-    //Update
-    public Rental updatedNameRental(int id, String nameRental) {
+    //UPDATE
+    public Rental updateNameRental(int id, String nameRental){
         Rental rental = rentalRepository.getById(id);
         rental.setNameRental(nameRental);
         return rentalRepository.save(rental);
     }
 
-    public Rental updateInternetDomain(int id, String internetDomain) {
+    public Rental updateInternetDomain(int id, String internetDomain){
         Rental rental = rentalRepository.getById(id);
         rental.setInternetDomain(internetDomain);
         return rentalRepository.save(rental);
     }
 
-    public Rental updateContactAddress(int id, String contactAddress) {
-        Rental rental = rentalRepository.getById(id);
-        rental.setContactAddress(contactAddress);
-        return rentalRepository.save(rental);
-    }
-
-
-    public Rental updateOwner(int id, String owner) {
+    public Rental updateOwnerRental(int id, String owner){
         Rental rental = rentalRepository.getById(id);
         rental.setOwner(owner);
         return rentalRepository.save(rental);
     }
 
+    public Rental updateAddressRental(int id, String contactAddress){
+        Rental rental = rentalRepository.getById(id);
+        rental.setContactAddress(contactAddress);
+        return rentalRepository.save(rental);
+    }
 
-    //Delete
-    public void deleteRental(Rental rental) {
+    //DELETE
+    public void deleteRental(Rental rental){
         rentalRepository.delete(rental);
     }
 
-    public void deleteRentalById(int id) {
+    public void deleteRentalById(int id){
         rentalRepository.deleteById(id);
     }
+
+
+
 
 
 }

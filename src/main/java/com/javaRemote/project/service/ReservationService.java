@@ -1,7 +1,7 @@
 package com.javaRemote.project.service;
 
 import com.javaRemote.project.database.entities.Reservation;
-import com.javaRemote.project.repository.ReservationRepository;
+import com.javaRemote.project.database.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;

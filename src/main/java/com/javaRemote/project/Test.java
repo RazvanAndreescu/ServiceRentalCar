@@ -1,9 +1,8 @@
 package com.javaRemote.project;
 
-import com.javaRemote.project.database.entities.Customer;
 import com.javaRemote.project.database.repository.CustomerRepository;
-import com.javaRemote.project.database.service.CustomerService;
-import com.javaRemote.project.database.service.RentalService;
+import com.javaRemote.project.service.CustomerService;
+import com.javaRemote.project.service.RentalService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

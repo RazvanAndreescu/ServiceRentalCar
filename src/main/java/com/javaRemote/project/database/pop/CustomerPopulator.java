@@ -1,7 +1,7 @@
 package com.javaRemote.project.database.pop;
 
 import com.javaRemote.project.database.entities.Customer;
-import com.javaRemote.project.database.service.CustomerService;
+import com.javaRemote.project.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
