@@ -3,6 +3,8 @@ package com.javaRemote.project.database.entities;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Proxy;
+
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -11,6 +13,7 @@ import java.sql.Date;
 @Getter
 @Table(name = "reservation")
 @Proxy(lazy = false)
+
 public class Reservation {
 
     @Id
