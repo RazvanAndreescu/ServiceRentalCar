@@ -1,7 +1,7 @@
 package com.javaRemote.project.service;
 
 import com.javaRemote.project.database.entities.Rental;
-import com.javaRemote.project.database.repository.RentalRepository;
+import com.javaRemote.project.repository.RentalRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
