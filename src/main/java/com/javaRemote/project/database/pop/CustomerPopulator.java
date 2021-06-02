@@ -21,6 +21,6 @@ public class CustomerPopulator implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        customerService.createCustomer(customer);
+//        customerService.createCustomer(customer);
     }
 }
