@@ -1,5 +1,6 @@
 package com.javaRemote.project.database.entities;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Proxy;
@@ -9,8 +10,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name = "branch")
 @Proxy(lazy = false)
+@Table(name = "branch")
 public class Branch {
 
     @Id
@@ -22,7 +23,7 @@ public class Branch {
     private String address;
 
     @ManyToOne
-    @JoinColumn(name = "rentalid")
+    @JoinColumn(name="rentalid")
     private Rental rental;
 
     @OneToMany(mappedBy = "branch")
