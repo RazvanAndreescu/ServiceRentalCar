@@ -1,16 +1,14 @@
 package com.javaRemote.project.database.entities;
 
-import lombok.Data;
+
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Getter
 @Setter
-@Proxy(lazy = false)
 @Table(name = "reservation")
 public class Reservation {
 
