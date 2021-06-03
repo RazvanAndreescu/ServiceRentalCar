@@ -26,24 +26,17 @@ public class CustomerService {
     }
 
     public List<Customer> getCustomersByName(String customerName){
-        return customerRepository.findAllByNameCustomerContaining(customerName);
+        return customerRepository.findAllByNameCustomer(customerName);
     }
 
     public List<Customer> getCustomersByEmail(String email){
-        return customerRepository.findAllByEmailContaining(email);
-    }
-
-    public Customer getCustomerByEmail(String email){
-        return customerRepository.findAllByEmailContaining(email).get(0);
+        return customerRepository.findAllByEmail(email);
     }
 
     public List<Customer> getCustomersByDrivingExperience(int drivingExperience){
         return customerRepository.findAllByDrivingExperience(drivingExperience);
     }
 
-    public Customer getCustomerById(int customerId){
-        return customerRepository.findCustomerByCustomerId(customerId);
-    }
 
     // UPDATE
     public Customer updateCustomerName(int id, String customerName){
@@ -65,7 +58,6 @@ public class CustomerService {
     }
 
     // DELETE
-
     public void deleteCustomer(Customer customer){
         customerRepository.delete(customer);
     }

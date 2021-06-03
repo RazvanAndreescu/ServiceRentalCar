@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface BranchRepository extends JpaRepository<Branch, Integer> {
-    List<Branch> getBranchByAddress(String adress);
+    List<Branch> getBranchByAddress(String address);
 }

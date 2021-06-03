@@ -15,18 +15,15 @@ public class RentalService {
         this.rentalRepository=rentalRepository;
     }
 
-    //CREATE
+    //Create
     public Rental createRental(Rental rental){
         return rentalRepository.save(rental);
     }
 
 
-    //READ
-    //    List<Rental>  // String
-    public List<Rental> getRentals(){
-//        return rentalRepository.findAll().toString();
+    //Read
+    public List<Rental> getAllRentals(){
         return rentalRepository.findAll();
-
     }
 
     public List<Rental> getRentalsByNameRental(String nameRental){
@@ -45,7 +42,7 @@ public class RentalService {
         return rentalRepository.getRentalByOwner(owner);
     }
 
-    //UPDATE
+    //Update
     public Rental updateNameRental(int id, String nameRental){
         Rental rental = rentalRepository.getById(id);
         rental.setNameRental(nameRental);
@@ -70,7 +67,7 @@ public class RentalService {
         return rentalRepository.save(rental);
     }
 
-    //DELETE
+    //Delete
     public void deleteRental(Rental rental){
         rentalRepository.delete(rental);
     }
