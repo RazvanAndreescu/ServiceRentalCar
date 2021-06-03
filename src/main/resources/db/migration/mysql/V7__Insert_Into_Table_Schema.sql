@@ -50,8 +50,6 @@ INSERT INTO car (model, transmission, bodyType, yearCar, status, price, branchId
 ("Dacia Sandero", "manual", "hatchback", "2020", "not available", 30, 4),
 ("Dacia Duster", "manual", "suv", "2018", "available", 40, 4);
 
-
-
 INSERT INTO customer (nameCustomer, email, drivingExperience) values
 ("Marian Bitanescu", "m.bitanescu@yahoo.com", 3),
 ("Ioana Alexandrescu", "i.alexandrecu@yahoo.com", 1),

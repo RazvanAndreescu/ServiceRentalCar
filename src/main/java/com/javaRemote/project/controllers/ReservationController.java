@@ -1,6 +1,5 @@
 package com.javaRemote.project.controllers;
 
-import com.javaRemote.project.database.entities.Customer;
 import com.javaRemote.project.database.entities.Reservation;
 import com.javaRemote.project.service.ReservationService;
 import org.springframework.web.bind.annotation.GetMapping;
