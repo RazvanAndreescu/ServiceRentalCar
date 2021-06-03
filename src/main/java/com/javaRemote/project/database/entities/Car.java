@@ -21,6 +21,7 @@ public class Car {
     @Column(name = "carid")
     private int carId;
 
+
     @Column(name = "model")
     private String model;
 
