@@ -2,14 +2,12 @@ package com.javaRemote.project.database.entities;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Setter
 @Getter
-@Proxy(lazy = false)
 @Table(name = "rental")
 @Proxy(lazy = false)
 public class Rental {
