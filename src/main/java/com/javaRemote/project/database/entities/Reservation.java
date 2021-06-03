@@ -1,5 +1,7 @@
 package com.javaRemote.project.database.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Proxy;
@@ -29,6 +31,7 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "branchid")
+    @JsonIgnore
     private Branch branch;
 
     @ManyToOne
@@ -37,6 +40,7 @@ public class Reservation {
 
     @ManyToOne
     @JoinColumn(name = "carid")
+    @JsonIgnore
     private Car car;
 
     @Override
