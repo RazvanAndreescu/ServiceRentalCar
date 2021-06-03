@@ -1,13 +1,16 @@
 package com.javaRemote.project.database.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Getter
 @Setter
+@Proxy(lazy = false)
 @Table(name = "reservation")
 public class Reservation {
 
@@ -26,6 +29,7 @@ public class Reservation {
     private int price;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name="branchid")
     private Branch branch;
 
@@ -34,6 +38,7 @@ public class Reservation {
     private Customer customer;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "carid")
     private Car car;
 
