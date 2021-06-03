@@ -1,18 +1,14 @@
 package com.javaRemote.project.database.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
-@Setter
 @Getter
+@Setter
 @Table(name = "reservation")
-@Proxy(lazy = false)
 public class Reservation {
 
     @Id
@@ -30,17 +26,15 @@ public class Reservation {
     private int price;
 
     @ManyToOne
-    @JoinColumn(name = "branchid")
-    @JsonIgnore
+    @JoinColumn(name="branchid")
     private Branch branch;
 
     @ManyToOne
-    @JoinColumn(name = "customerid")
+    @JoinColumn(name="customerid")
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "carid")
-    @JsonIgnore
     private Car car;
 
     @Override
