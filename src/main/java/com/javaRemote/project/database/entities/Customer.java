@@ -1,13 +1,16 @@
 package com.javaRemote.project.database.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
+@Proxy(lazy = false)
 @Table(name = "customer")
 public class Customer {
 
@@ -26,6 +29,7 @@ public class Customer {
     private int drivingExperience;
 
     @OneToMany(mappedBy = "customer")
+    @JsonIgnore
     private List<Reservation> reservations;
 
     @Override
