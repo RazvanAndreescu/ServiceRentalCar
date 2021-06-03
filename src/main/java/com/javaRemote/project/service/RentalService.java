@@ -3,7 +3,6 @@ package com.javaRemote.project.service;
 import com.javaRemote.project.database.entities.Rental;
 import com.javaRemote.project.repository.RentalRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -22,11 +21,8 @@ public class RentalService {
 
 
     //READ
-    //    List<Rental>  // String
     public List<Rental> getRentals(){
-//        return rentalRepository.findAll().toString();
         return rentalRepository.findAll();
-
     }
 
     public List<Rental> getRentalsByNameRental(String nameRental){
