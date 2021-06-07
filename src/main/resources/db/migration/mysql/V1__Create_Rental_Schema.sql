@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS rental
     contactAddress
     VARCHAR
 (
-    50
+    30
 ),
     owner
     VARCHAR
