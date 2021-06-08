@@ -1,14 +1,16 @@
 package com.javaRemote.project.database.entities;
 
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Getter
 @Setter
+@Proxy(lazy = false)
 @Table(name = "reservation")
 public class Reservation {
 
@@ -37,14 +39,4 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "carid")
     private Car car;
-
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "reservationId=" + reservationId +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", price=" + price +
-                '}';
-    }
 }

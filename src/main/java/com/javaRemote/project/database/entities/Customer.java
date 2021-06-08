@@ -1,17 +1,14 @@
 package com.javaRemote.project.database.entities;
 
-import lombok.AllArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Proxy(lazy = false)
 @Table(name = "customer")
 public class Customer {
 
@@ -30,15 +27,21 @@ public class Customer {
     private int drivingExperience;
 
     @OneToMany(mappedBy = "customer")
+    @JsonIgnore
     private List<Reservation> reservations;
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "customerId=" + customerId +
-                ", nameCustomer='" + nameCustomer + '\'' +
-                ", email='" + email + '\'' +
-                ", drivingExperience=" + drivingExperience +
-                '}';
+    public Customer setNameCustomer(String nameCustomer) {
+        this.nameCustomer = nameCustomer;
+        return this;
+    }
+
+    public Customer setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public Customer setDrivingExperience(int drivingExperience) {
+        this.drivingExperience = drivingExperience;
+        return this;
     }
 }

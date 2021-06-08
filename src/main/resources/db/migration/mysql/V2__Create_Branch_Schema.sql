@@ -5,12 +5,12 @@ CREATE TABLE IF NOT EXISTS branch
     PRIMARY
     KEY
     AUTO_INCREMENT,
-
     address
     VARCHAR
 (
-    50
+    60
 ),
+
     rentalId INT,
     FOREIGN KEY
 (
@@ -19,4 +19,5 @@ CREATE TABLE IF NOT EXISTS branch
 (
     rentalId
 )
+
     ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;
