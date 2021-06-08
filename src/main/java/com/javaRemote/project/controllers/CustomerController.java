@@ -4,6 +4,7 @@ import com.javaRemote.project.database.entities.Customer;
 import com.javaRemote.project.service.CustomerService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
@@ -31,9 +32,14 @@ public class CustomerController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    public void updateCustomer(@PathVariable int id, @RequestBody Customer customer){
-        customerService.updateCustomerName(id, customer.getNameCustomer());
-        customerService.updateCustomerEmail(id, customer.getEmail());
+    public boolean updateCustomer(@PathVariable int id, @RequestBody Customer customer){
+        try {
+            customerService.updateCustomerName(id, customer.getNameCustomer());
+            customerService.updateCustomerEmail(id, customer.getEmail());
+        } catch (Exception e){
+            return false;
+        }
+        return true;
     }
 
     @DeleteMapping("/{id}")
