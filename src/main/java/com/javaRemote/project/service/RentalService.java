@@ -3,7 +3,6 @@ package com.javaRemote.project.service;
 import com.javaRemote.project.database.entities.Rental;
 import com.javaRemote.project.repository.RentalRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -15,14 +14,14 @@ public class RentalService {
         this.rentalRepository=rentalRepository;
     }
 
-    //Create
+    //CREATE
     public Rental createRental(Rental rental){
         return rentalRepository.save(rental);
     }
 
 
-    //Read
-    public List<Rental> getAllRentals(){
+    //READ
+    public List<Rental> getRentals(){
         return rentalRepository.findAll();
     }
 
@@ -42,7 +41,7 @@ public class RentalService {
         return rentalRepository.getRentalByOwner(owner);
     }
 
-    //Update
+    //UPDATE
     public Rental updateNameRental(int id, String nameRental){
         Rental rental = rentalRepository.getById(id);
         rental.setNameRental(nameRental);
@@ -67,7 +66,7 @@ public class RentalService {
         return rentalRepository.save(rental);
     }
 
-    //Delete
+    //DELETE
     public void deleteRental(Rental rental){
         rentalRepository.delete(rental);
     }

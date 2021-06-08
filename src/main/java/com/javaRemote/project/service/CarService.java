@@ -3,7 +3,6 @@ package com.javaRemote.project.service;
 import com.javaRemote.project.database.entities.Car;
 import com.javaRemote.project.repository.CarRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -21,7 +20,6 @@ public class CarService {
         return carRepository.save(car);
     }
 
-    //Read
     public List<?> getAllCars(){
         return carRepository.findAll();
     }
