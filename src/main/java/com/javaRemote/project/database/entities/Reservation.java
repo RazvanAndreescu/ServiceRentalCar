@@ -38,7 +38,6 @@ public class Reservation {
     private Customer customer;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "carid")
     private Car car;
 }

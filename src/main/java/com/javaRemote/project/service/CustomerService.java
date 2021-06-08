@@ -28,7 +28,8 @@ public class CustomerService {
 
     public Customer updateCustomer(int id, Customer customer) {
         Customer customerToUpdate = customerRepository.getById(id);
-        customerToUpdate.setNameCustomer(customer.getNameCustomer() != null ? customer.getNameCustomer() : customerToUpdate.getNameCustomer())
+        customerToUpdate
+                .setNameCustomer(customer.getNameCustomer() != null ? customer.getNameCustomer() : customerToUpdate.getNameCustomer())
                 .setEmail(customer.getEmail() != null ? customer.getEmail() : customerToUpdate.getEmail())
                 .setDrivingExperience(customer.getDrivingExperience() != 0 ? customer.getDrivingExperience() : customerToUpdate.getDrivingExperience());
         return customerRepository.save(customerToUpdate);
