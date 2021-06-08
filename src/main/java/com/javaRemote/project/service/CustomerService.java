@@ -68,6 +68,14 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
+    public Customer updateCustomer(int id, Customer customer){
+        Customer customerToUpdate = customerRepository.getById(id);
+        customerToUpdate.setNameCustomer(customer.getNameCustomer())
+                        .setEmail(customer.getEmail())
+                        .setDrivingExperience(customer.getDrivingExperience());
+        return customerRepository.save(customer);
+    }
+
     // DELETE
     public void deleteCustomer(Customer customer) {
         customerRepository.delete(customer);

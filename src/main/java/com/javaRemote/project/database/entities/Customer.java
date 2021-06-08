@@ -9,7 +9,6 @@ import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @Proxy(lazy = false)
 @Table(name = "customer")
 public class Customer {
@@ -31,6 +30,26 @@ public class Customer {
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
     private List<Reservation> reservations;
+
+    public Customer setNameCustomer(String nameCustomer) {
+        this.nameCustomer = nameCustomer;
+        return this;
+    }
+
+    public Customer setEmail(String email) {
+        this.email = email;
+        return this;
+    }
+
+    public Customer setDrivingExperience(int drivingExperience) {
+        this.drivingExperience = drivingExperience;
+        return this;
+    }
+
+    public Customer setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+        return this;
+    }
 
     @Override
     public String toString() {
