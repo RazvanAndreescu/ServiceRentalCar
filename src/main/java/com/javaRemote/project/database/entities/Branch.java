@@ -1,5 +1,6 @@
 package com.javaRemote.project.database.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Proxy;
@@ -11,7 +12,6 @@ import java.util.List;
 @Setter
 @Proxy(lazy = false)
 @Table(name = "branch")
-@Proxy(lazy = false)
 public class Branch {
 
     @Id
@@ -23,23 +23,18 @@ public class Branch {
     private String address;
 
     @ManyToOne
-    @JoinColumn(name = "rentalid")
+    @JoinColumn(name="rentalid")
+    @JsonIgnore
     private Rental rental;
 
     @OneToMany(mappedBy = "branch")
     private List<Car> cars;
 
     @OneToMany(mappedBy = "branch")
+    @JsonIgnore
     private List<Employee> employees;
 
     @OneToMany(mappedBy = "branch")
+    @JsonIgnore
     private List<Reservation> reservations;
-
-    @Override
-    public String toString() {
-        return "Branch{" +
-                "branchId=" + branchId +
-                ", address='" + address + '\'' +
-                '}';
-    }
 }

@@ -26,13 +26,4 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name="branchid")
     private Branch branch;
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "employeeId=" + employeeId +
-                ", nameEmployee='" + nameEmployee + '\'' +
-                ", roleEmployee='" + roleEmployee + '\'' +
-                '}';
-    }
 }

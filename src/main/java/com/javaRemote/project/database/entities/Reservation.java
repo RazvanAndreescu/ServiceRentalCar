@@ -29,7 +29,6 @@ public class Reservation {
     private int price;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name="branchid")
     private Branch branch;
 
@@ -38,17 +37,6 @@ public class Reservation {
     private Customer customer;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "carid")
     private Car car;
-
-    @Override
-    public String toString() {
-        return "Reservation{" +
-                "reservationId=" + reservationId +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                ", price=" + price +
-                '}';
-    }
 }
