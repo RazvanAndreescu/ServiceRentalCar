@@ -1,5 +1,6 @@
 package com.javaRemote.project.database.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Proxy;
@@ -38,22 +39,10 @@ public class Car {
 
     @ManyToOne
     @JoinColumn(name="branchid")
+    @JsonIgnore
     private Branch branch;
 
     @OneToMany(mappedBy = "car")
+    @JsonIgnore
     private List<Reservation> reservations;
-
-
-    @Override
-    public String toString() {
-        return "Car{" +
-                "carId=" + carId +
-                ", model='" + model + '\'' +
-                ", transmission='" + transmission + '\'' +
-                ", bodyType='" + bodyType + '\'' +
-                ", yearCar='" + yearCar + '\'' +
-                ", status='" + status + '\'' +
-                ", price=" + price +
-                '}';
-    }
 }

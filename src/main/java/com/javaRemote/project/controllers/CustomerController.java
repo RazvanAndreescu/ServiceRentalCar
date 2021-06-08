@@ -21,14 +21,11 @@ public class CustomerController {
         return customerService.getAllCustomers();
     }
 
-
     @PostMapping("/")
     @ResponseBody
     public Customer createCustomer(@RequestBody Customer customer) {
-        customerService.createCustomer(customer);
-        return customer;
+        return customerService.createCustomer(customer);
     }
-
 
     @PutMapping("/{id}")
     @ResponseBody

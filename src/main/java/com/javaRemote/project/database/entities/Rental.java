@@ -30,18 +30,6 @@ public class Rental {
     @Column(name = "owner")
     private String owner;
 
-//    , fetch = FetchType.EAGER, cascade = CascadeType.ALL
     @OneToMany(mappedBy = "rental")
     private List<Branch> branches;
-
-    @Override
-    public String toString() {
-        return "Rental{" +
-                "rentalId=" + rentalId +
-                ", nameRental='" + nameRental + '\'' +
-                ", internetDomain='" + internetDomain + '\'' +
-                ", contactAddress='" + contactAddress + '\'' +
-                ", owner='" + owner + '\'' +
-                '}';
-    }
 }

@@ -50,14 +50,4 @@ public class Customer {
         this.reservations = reservations;
         return this;
     }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "customerId=" + customerId +
-                ", nameCustomer='" + nameCustomer + '\'' +
-                ", email='" + email + '\'' +
-                ", drivingExperience=" + drivingExperience +
-                '}';
-    }
 }
