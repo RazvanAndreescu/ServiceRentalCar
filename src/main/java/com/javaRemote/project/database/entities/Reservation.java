@@ -29,7 +29,6 @@ public class Reservation {
     private int price;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name="branchid")
     private Branch branch;
 

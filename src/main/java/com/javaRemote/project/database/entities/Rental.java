@@ -11,7 +11,6 @@ import java.util.List;
 @Getter
 @Proxy(lazy = false)
 @Table(name = "rental")
-@Proxy(lazy = false)
 public class Rental {
 
     @Id
