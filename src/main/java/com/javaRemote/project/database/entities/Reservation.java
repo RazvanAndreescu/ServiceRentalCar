@@ -1,15 +1,12 @@
 package com.javaRemote.project.database.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
 import java.sql.Date;
 
 @Entity
 @Getter
-@Setter
 @Proxy(lazy = false)
 @Table(name = "reservation")
 public class Reservation {
@@ -39,4 +36,34 @@ public class Reservation {
     @ManyToOne
     @JoinColumn(name = "carid")
     private Car car;
+
+    public Reservation setStartDate(Date startDate) {
+        this.startDate = startDate;
+        return this;
+    }
+
+    public Reservation setEndDate(Date endDate) {
+        this.endDate = endDate;
+        return this;
+    }
+
+    public Reservation setPrice(int price) {
+        this.price = price;
+        return this;
+    }
+
+    public Reservation setBranch(Branch branch) {
+        this.branch = branch;
+        return this;
+    }
+
+    public Reservation setCustomer(Customer customer) {
+        this.customer = customer;
+        return this;
+    }
+
+    public Reservation setCar(Car car) {
+        this.car = car;
+        return this;
+    }
 }

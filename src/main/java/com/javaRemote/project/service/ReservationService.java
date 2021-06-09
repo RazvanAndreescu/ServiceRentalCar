@@ -28,12 +28,13 @@ public class ReservationService {
 
     public Reservation updateReservation(int id, Reservation jsonReservation){
         Reservation databaseReservation = reservationRepository.findReservationByReservationId(id);
-        databaseReservation.setStartDate(jsonReservation.getStartDate() != null ? jsonReservation.getStartDate():databaseReservation.getStartDate());
-        databaseReservation.setEndDate(jsonReservation.getEndDate() != null ? jsonReservation.getEndDate() : databaseReservation.getEndDate());
-        databaseReservation.setPrice(jsonReservation.getPrice() != 0 ? jsonReservation.getPrice() : databaseReservation.getPrice());
-        databaseReservation.setBranch(jsonReservation.getBranch() != null ? jsonReservation.getBranch() : databaseReservation.getBranch());
-        databaseReservation.setCustomer(jsonReservation.getCustomer() != null ? jsonReservation.getCustomer() : databaseReservation.getCustomer());
-        databaseReservation.setCar(jsonReservation.getCar() != null ? jsonReservation.getCar() : databaseReservation.getCar());
+        databaseReservation
+                .setStartDate(jsonReservation.getStartDate() != null ? jsonReservation.getStartDate():databaseReservation.getStartDate())
+                .setEndDate(jsonReservation.getEndDate() != null ? jsonReservation.getEndDate() : databaseReservation.getEndDate())
+                .setPrice(jsonReservation.getPrice() != 0 ? jsonReservation.getPrice() : databaseReservation.getPrice())
+                .setBranch(jsonReservation.getBranch() != null ? jsonReservation.getBranch() : databaseReservation.getBranch())
+                .setCustomer(jsonReservation.getCustomer() != null ? jsonReservation.getCustomer() : databaseReservation.getCustomer())
+                .setCar(jsonReservation.getCar() != null ? jsonReservation.getCar() : databaseReservation.getCar());
         return reservationRepository.save(databaseReservation);
     }
 

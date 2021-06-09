@@ -27,9 +27,10 @@ public class EmployeeService {
 
     public Employee updateEmployee(int id, Employee jsonEmployee){
         Employee databaseEmployee = employeeRepository.getById(id);
-        databaseEmployee.setNameEmployee(jsonEmployee.getNameEmployee() != null ? jsonEmployee.getNameEmployee() : databaseEmployee.getNameEmployee());
-        databaseEmployee.setRoleEmployee(jsonEmployee.getRoleEmployee() != null ? jsonEmployee.getRoleEmployee() : databaseEmployee.getRoleEmployee());
-        databaseEmployee.setBranch(jsonEmployee.getBranch() != null ? jsonEmployee.getBranch() : databaseEmployee.getBranch());
+        databaseEmployee
+                .setNameEmployee(jsonEmployee.getNameEmployee() != null ? jsonEmployee.getNameEmployee() : databaseEmployee.getNameEmployee())
+                .setRoleEmployee(jsonEmployee.getRoleEmployee() != null ? jsonEmployee.getRoleEmployee() : databaseEmployee.getRoleEmployee())
+                .setBranch(jsonEmployee.getBranch() != null ? jsonEmployee.getBranch() : databaseEmployee.getBranch());
         return employeeRepository.save(databaseEmployee);
     }
 
