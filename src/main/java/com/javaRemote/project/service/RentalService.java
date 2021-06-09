@@ -21,56 +21,25 @@ public class RentalService {
 
 
     //READ
-    public List<Rental> getRentals(){
+    public List<Rental> getAllRentals(){
         return rentalRepository.findAll();
     }
 
-    public List<Rental> getRentalsByNameRental(String nameRental){
-        return rentalRepository.getRentalByNameRental(nameRental);
-    }
-
-    public List<Rental> getRentalsByInternetDomain(String internetDomain){
-        return rentalRepository.getRentalByInternetDomain(internetDomain);
-    }
-
-    public List<Rental> getRentalsByContactAddress(String contactAddress){
-        return rentalRepository.getRentalByContactAddress(contactAddress);
-    }
-
-    public List<Rental> getRentalsByOwner(String owner){
-        return rentalRepository.getRentalByOwner(owner);
+    public Rental getRentalsById(int id){
+        return rentalRepository.getById(id);
     }
 
     //UPDATE
-    public Rental updateNameRental(int id, String nameRental){
-        Rental rental = rentalRepository.getById(id);
-        rental.setNameRental(nameRental);
-        return rentalRepository.save(rental);
-    }
-
-    public Rental updateInternetDomain(int id, String internetDomain){
-        Rental rental = rentalRepository.getById(id);
-        rental.setInternetDomain(internetDomain);
-        return rentalRepository.save(rental);
-    }
-
-    public Rental updateOwnerRental(int id, String owner){
-        Rental rental = rentalRepository.getById(id);
-        rental.setOwner(owner);
-        return rentalRepository.save(rental);
-    }
-
-    public Rental updateAddressRental(int id, String contactAddress){
-        Rental rental = rentalRepository.getById(id);
-        rental.setContactAddress(contactAddress);
-        return rentalRepository.save(rental);
+    public Rental updateRental(int id, Rental rental){
+        Rental rentalToUpdate = rentalRepository.getById(id);
+        rentalToUpdate.setNameRental(rental.getNameRental() != null? rental.getNameRental() : rentalToUpdate.getNameRental())
+                .setContactAddress(rental.getContactAddress() != null? rental.getContactAddress() : rentalToUpdate.getContactAddress())
+                .setInternetDomain(rental.getInternetDomain() != null? rental.getInternetDomain() : rentalToUpdate.getInternetDomain())
+                .setOwner(rental.getOwner() != null? rental.getOwner() : rentalToUpdate.getOwner());
+        return rentalRepository.save(rentalToUpdate);
     }
 
     //DELETE
-    public void deleteRental(Rental rental){
-        rentalRepository.delete(rental);
-    }
-
     public void deleteRentalById(int id){
         rentalRepository.deleteById(id);
     }
