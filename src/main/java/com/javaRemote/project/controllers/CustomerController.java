@@ -24,8 +24,7 @@ public class CustomerController {
     @PostMapping("/")
     @ResponseBody
     public Customer createCustomer(@RequestBody Customer customer) {
-        customerService.createCustomer(customer);
-        return customer;
+        return customerService.createCustomer(customer);
     }
 
     @PutMapping("/{id}")

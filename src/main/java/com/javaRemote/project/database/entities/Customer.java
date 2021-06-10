@@ -44,4 +44,9 @@ public class Customer {
         this.drivingExperience = drivingExperience;
         return this;
     }
+
+    public Customer setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+        return this;
+    }
 }

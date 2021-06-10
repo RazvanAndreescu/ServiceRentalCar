@@ -3,7 +3,6 @@ package com.javaRemote.project.service;
 import com.javaRemote.project.database.entities.Customer;
 import com.javaRemote.project.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
@@ -29,7 +28,8 @@ public class CustomerService {
 
     public Customer updateCustomer(int id, Customer customer) {
         Customer customerToUpdate = customerRepository.getById(id);
-        customerToUpdate.setNameCustomer(customer.getNameCustomer() != null ? customer.getNameCustomer() : customerToUpdate.getNameCustomer())
+        customerToUpdate
+                .setNameCustomer(customer.getNameCustomer() != null ? customer.getNameCustomer() : customerToUpdate.getNameCustomer())
                 .setEmail(customer.getEmail() != null ? customer.getEmail() : customerToUpdate.getEmail())
                 .setDrivingExperience(customer.getDrivingExperience() != 0 ? customer.getDrivingExperience() : customerToUpdate.getDrivingExperience());
         return customerRepository.save(customerToUpdate);
