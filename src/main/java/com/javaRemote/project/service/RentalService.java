@@ -28,7 +28,8 @@ public class RentalService {
 
     public Rental updateRental(int id, Rental rental){
         Rental rentalToUpdate = rentalRepository.getById(id);
-        rentalToUpdate.setNameRental(rental.getNameRental() != null? rental.getNameRental() : rentalToUpdate.getNameRental())
+        rentalToUpdate
+                .setNameRental(rental.getNameRental() != null? rental.getNameRental() : rentalToUpdate.getNameRental())
                 .setContactAddress(rental.getContactAddress() != null? rental.getContactAddress() : rentalToUpdate.getContactAddress())
                 .setInternetDomain(rental.getInternetDomain() != null? rental.getInternetDomain() : rentalToUpdate.getInternetDomain())
                 .setOwner(rental.getOwner() != null? rental.getOwner() : rentalToUpdate.getOwner());

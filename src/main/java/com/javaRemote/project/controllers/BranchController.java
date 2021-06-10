@@ -23,6 +23,7 @@ public class BranchController {
         return branchService.getAllBranches();
     }
 
+    // TODO: 10.06.2021 validation for rentalId;
     @PostMapping("/")
     @ResponseBody
     public Branch createBranch(@RequestBody Branch branch) {
@@ -30,6 +31,7 @@ public class BranchController {
         return branch;
     }
 
+    // TODO: 10.06.2021 validation for rentalId;
     @PutMapping("/{id}")
     @ResponseBody
     public boolean updateBranch(@PathVariable int id, @RequestBody Branch branch){

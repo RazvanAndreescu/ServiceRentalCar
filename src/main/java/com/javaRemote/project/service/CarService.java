@@ -29,7 +29,8 @@ public class CarService {
 
     public Car updateCar(int id, Car car){
         Car carToUpdate = carRepository.getById(id);
-        carToUpdate.setModel(car.getModel() != null ? car.getModel() : carToUpdate.getModel())
+        carToUpdate
+                .setModel(car.getModel() != null ? car.getModel() : carToUpdate.getModel())
                 .setTransmission(car.getTransmission() != null ? car.getTransmission() : carToUpdate.getTransmission())
                 .setBodyType(car.getBodyType() != null ? car.getBodyType() : carToUpdate.getBodyType())
                 .setYearCar(car.getYearCar() != null ? car.getYearCar() : carToUpdate.getYearCar())

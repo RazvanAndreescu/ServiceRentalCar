@@ -1,9 +1,7 @@
 package com.javaRemote.project.database.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
 import java.util.List;
@@ -14,8 +12,6 @@ import java.util.List;
 @Table(name = "branch")
 public class Branch {
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "branchid")
@@ -23,7 +19,6 @@ public class Branch {
 
     @Column(name = "address")
     private String address;
-
 
     @ManyToOne
     @JoinColumn(name="rentalid")
