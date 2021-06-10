@@ -10,7 +10,6 @@ import java.util.List;
 @Entity
 @Setter
 @Getter
-@Proxy(lazy = false)
 @Table(name = "rental")
 public class Rental {
 

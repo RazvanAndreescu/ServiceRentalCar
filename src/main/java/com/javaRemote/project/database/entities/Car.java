@@ -2,14 +2,12 @@ package com.javaRemote.project.database.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
-import lombok.Setter;
 import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Getter
-@Setter
 @Proxy(lazy = false)
 @Table(name = "car")
 public class Car {
@@ -36,6 +34,36 @@ public class Car {
 
     @Column(name = "price")
     private int price;
+
+    public Car setModel(String model) {
+        this.model = model;
+        return this;
+    }
+
+    public Car setTransmission(String transmission) {
+        this.transmission = transmission;
+        return this;
+    }
+
+    public Car setBodyType(String bodyType) {
+        this.bodyType = bodyType;
+        return this;
+    }
+
+    public Car setYearCar(String yearCar) {
+        this.yearCar = yearCar;
+        return this;
+    }
+
+    public Car setStatus(String status) {
+        this.status = status;
+        return this;
+    }
+
+    public Car setPrice(int price) {
+        this.price = price;
+        return this;
+    }
 
     @ManyToOne
     @JoinColumn(name="branchid")
