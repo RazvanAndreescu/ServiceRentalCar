@@ -14,7 +14,7 @@ public class BranchService {
     }
 
     //Create
-    public Branch create(Branch branch){
+    public Branch createBranch(Branch branch){
         return branchRepository.save(branch);
     }
 
@@ -23,15 +23,17 @@ public class BranchService {
         return branchRepository.findAll();
     }
 
-    public List<Branch> getBranchByAddress(String address){
-        return branchRepository.getBranchByAddress(address);
+
+    public List<Branch> getBranchById(int branchId){
+        return branchRepository.getBranchByBranchId(branchId);
     }
 
     //Update
-    public Branch updateBranchAddress(int id, String address){
-        Branch branch = branchRepository.getById(id);
-        branch.setAddress(address);
-        return branchRepository.save(branch);
+    public Branch updateBranchAddress(int branchId, Branch branch){
+        Branch branchToUpdate = branchRepository.getById(branchId);
+        branchToUpdate.setAddress(branch.getAddress() != null? branch.getAddress():branchToUpdate.getAddress())
+                .setRental(branch.getRental() != null? branch.getRental():branchToUpdate.getRental());
+        return branchRepository.save(branchToUpdate);
     }
 
     //Delete
@@ -39,7 +41,7 @@ public class BranchService {
         branchRepository.delete(branch);
     }
 
-    public void deleteBranchById(int id){
-        branchRepository.deleteById(id);
+    public void deleteBranchById(int branchId){
+        branchRepository.deleteById(branchId);
     }
 }

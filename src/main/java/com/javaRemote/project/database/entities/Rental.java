@@ -1,5 +1,6 @@
 package com.javaRemote.project.database.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Proxy;
@@ -11,7 +12,6 @@ import java.util.List;
 @Getter
 @Proxy(lazy = false)
 @Table(name = "rental")
-@Proxy(lazy = false)
 public class Rental {
 
     @Id
