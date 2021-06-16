@@ -1,6 +1,7 @@
 package com.javaRemote.project.service;
 
 import com.javaRemote.project.database.entities.Rental;
+import com.javaRemote.project.database.mapper.RentalMapper;
 import com.javaRemote.project.repository.RentalRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -10,8 +11,10 @@ public class RentalService {
 
     private final RentalRepository rentalRepository;
 
-    public RentalService(RentalRepository rentalRepository){
-        this.rentalRepository=rentalRepository;
+    private RentalMapper rentalMapper;
+
+    public RentalService(RentalRepository rentalRepository) {
+        this.rentalRepository = rentalRepository;
     }
 
     public Rental createRental(Rental rental){

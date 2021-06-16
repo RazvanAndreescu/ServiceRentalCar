@@ -17,8 +17,13 @@ public class ReservationController {
     }
 
     @GetMapping("/")
-    public List<Reservation> printAllCustomers(){
+    public List<Reservation> printAllReservations(){
         return reservationService.getAllReservation();
+    }
+
+    @GetMapping("/{id}")
+    public List<Reservation> printReservationsForOneCustomer(@PathVariable int id){
+        return reservationService.getAllReservationsForACustomer(id);
     }
 
     @PostMapping("/")

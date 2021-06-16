@@ -26,6 +26,10 @@ public class ReservationService {
         return reservationRepository.findReservationByReservationId(id);
     }
 
+    public List<Reservation> getAllReservationsForACustomer(int id){
+        return reservationRepository.findReservationsByCustomer_CustomerId(id);
+    }
+
     public Reservation updateReservation(int id, Reservation jsonReservation){
         Reservation databaseReservation = reservationRepository.findReservationByReservationId(id);
         databaseReservation
