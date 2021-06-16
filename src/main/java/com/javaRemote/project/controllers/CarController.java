@@ -1,6 +1,5 @@
 package com.javaRemote.project.controllers;
 
-
 import com.javaRemote.project.database.entities.Car;
 import com.javaRemote.project.service.CarService;
 import org.springframework.web.bind.annotation.*;

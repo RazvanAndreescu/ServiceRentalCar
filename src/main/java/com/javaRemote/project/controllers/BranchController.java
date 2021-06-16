@@ -1,9 +1,7 @@
 package com.javaRemote.project.controllers;
 
 import com.javaRemote.project.database.entities.Branch;
-import com.javaRemote.project.database.entities.Customer;
 import com.javaRemote.project.service.BranchService;
-import com.javaRemote.project.service.CustomerService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

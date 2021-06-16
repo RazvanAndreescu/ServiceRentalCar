@@ -2,7 +2,6 @@ package com.javaRemote.project.database.mapper;
 
 import com.javaRemote.project.database.dto.RentalDto;
 import com.javaRemote.project.database.entities.Rental;
-import com.javaRemote.project.repository.RentalRepository;
 import com.javaRemote.project.service.RentalService;
 import org.springframework.stereotype.Service;
 
