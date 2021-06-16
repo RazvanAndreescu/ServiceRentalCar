@@ -37,7 +37,6 @@ public class Car {
 
     @ManyToOne
     @JoinColumn(name="branchid")
-    @JsonIgnore
     private Branch branch;
 
     @OneToMany(mappedBy = "car")

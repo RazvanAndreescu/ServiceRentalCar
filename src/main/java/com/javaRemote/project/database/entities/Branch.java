@@ -22,10 +22,10 @@ public class Branch {
 
     @ManyToOne
     @JoinColumn(name="rentalid")
-    @JsonIgnore
     private Rental rental;
 
     @OneToMany(mappedBy = "branch")
+    @JsonIgnore
     private List<Car> cars;
 
     @OneToMany(mappedBy = "branch")
