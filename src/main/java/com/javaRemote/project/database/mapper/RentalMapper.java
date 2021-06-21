@@ -16,10 +16,12 @@ public class RentalMapper {
 
     private final RentalService rentalService;
     private final BranchService branchService;
+    private final BranchMapper branchMapper;
 
-    public RentalMapper(RentalService rentalService, BranchService branchService) {
+    public RentalMapper(RentalService rentalService, BranchService branchService, BranchMapper branchMapper) {
         this.rentalService = rentalService;
         this.branchService = branchService;
+        this.branchMapper = branchMapper;
     }
 
     public List<RentalDto> getRentals(){
@@ -30,18 +32,6 @@ public class RentalMapper {
         }
         return rentals;
     }
-
-//    public RentalDto convertRentalEntityToDto(Rental rental){
-//        RentalDto rentalDto = new RentalDto();
-//        return rentalDto
-//                .setRentalId(rental.getRentalId())
-//                .setNameRental(rental.getNameRental())
-//                .setInternetDomain(rental.getInternetDomain())
-//                .setContactAddress(rental.getContactAddress())
-//                .setOwner(rental.getOwner())
-//                .setBranches(rental.getBranches());
-//
-//    }
 
     public Rental convertToRentalEntity(RentalDto rentalDto){
         Rental rental = new Rental();
@@ -58,11 +48,9 @@ public class RentalMapper {
     public RentalDto convertToRentalDTO(Rental rental){
         RentalDto rentalDTO = new RentalDto();
         BranchDto branchDto = new BranchDto();
-        List <Rental> rentalList = new ArrayList<>();
         List <BranchDto> branchDtoList = new ArrayList<>();
-        List<Branch> branchList = new ArrayList<>();
         for (Branch localBranch: rental.getBranches()){
-            branchDto = localBranch.convertToBranchDto(localBranch);
+            branchDto = branchMapper.convertToBranchDto(localBranch);
             branchDtoList.add(branchDto);
         };
         rentalDTO.setRentalId(rental.getRentalId())

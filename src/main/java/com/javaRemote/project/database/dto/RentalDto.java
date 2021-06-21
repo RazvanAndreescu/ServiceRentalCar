@@ -48,15 +48,4 @@ public class RentalDto {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return "RentalDto{" +
-                "rentalId=" + rentalId +
-                ", nameRental='" + nameRental + '\'' +
-                ", internetDomain='" + internetDomain + '\'' +
-                ", contactAddress='" + contactAddress + '\'' +
-                ", owner='" + owner + '\'' +
-                ", branches=" + branches +
-                '}';
-    }
 }

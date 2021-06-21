@@ -1,7 +1,6 @@
 package com.javaRemote.project.database.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.javaRemote.project.database.dto.BranchDto;
 import lombok.Getter;
 import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
@@ -65,13 +64,5 @@ public class Branch {
     public Branch setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
         return this;
-    }
-
-    public BranchDto convertToBranchDto(Branch branch){
-        BranchDto branchDto = new BranchDto();
-        return branchDto
-                .setBranchId(branch.getBranchId())
-                .setAddress(branch.getAddress())
-                .setRentalId(branch.getRental().getRentalId());
     }
 }
