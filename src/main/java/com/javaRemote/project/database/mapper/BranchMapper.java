@@ -2,16 +2,16 @@ package com.javaRemote.project.database.mapper;
 
 import com.javaRemote.project.database.dto.BranchDto;
 import com.javaRemote.project.database.entities.Branch;
-import com.javaRemote.project.repository.RentalRepository;
+import com.javaRemote.project.service.RentalService;
 import com.sun.istack.NotNull;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BranchMapper {
-    private final RentalRepository rentalRepository;
+    private final RentalService rentalService;
 
-    public BranchMapper(RentalRepository rentalRepository) {
-        this.rentalRepository = rentalRepository;
+    public BranchMapper(RentalService rentalService) {
+        this.rentalService = rentalService;
     }
 
     public Branch convertToBranchEntity(@NotNull BranchDto branchDto){
@@ -20,7 +20,7 @@ public class BranchMapper {
                 .setBranchId(branchDto.getBranchId())
                 .setAddress(branchDto.getAddress())
                 // gaseste rentalul dupa id-ul rentaluluiDto din BranchDto
-                .setRental(rentalRepository.getById(branchDto.getBranchId()));
+                .setRental(rentalService.getRentalsById(branchDto.getBranchId()));
 
     }
 
