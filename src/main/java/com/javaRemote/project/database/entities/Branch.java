@@ -1,6 +1,7 @@
 package com.javaRemote.project.database.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.javaRemote.project.database.dto.BranchDto;
 import lombok.Getter;
 import org.hibernate.annotations.Proxy;
 import javax.persistence.*;
@@ -36,6 +37,11 @@ public class Branch {
     @JsonIgnore
     private List<Reservation> reservations;
 
+    public Branch setBranchId(int branchId) {
+        this.branchId = branchId;
+        return this;
+    }
+
     public Branch setAddress(String address) {
         this.address = address;
         return this;
@@ -44,5 +50,27 @@ public class Branch {
     public Branch setRental(Rental rental) {
         this.rental = rental;
         return this;
+    }
+
+    public Branch setCars(List<Car> cars) {
+        this.cars = cars;
+        return this;
+    }
+
+    public Branch setEmployees(List<Employee> employees) {
+        this.employees = employees;
+        return this;
+    }
+
+    public Branch setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+        return this;
+    }
+    public BranchDto convertToBranchDto(Branch branch){
+        BranchDto branchDto = new BranchDto();
+        return branchDto
+                .setBranchId(branch.getBranchId())
+                .setAddress(branch.getAddress())
+                .setRentalId(branch.getBranchId());
     }
 }
