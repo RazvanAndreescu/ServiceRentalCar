@@ -4,6 +4,7 @@ import com.javaRemote.project.database.dto.BranchDto;
 import com.javaRemote.project.database.dto.RentalDto;
 import com.javaRemote.project.database.entities.Branch;
 import com.javaRemote.project.database.entities.Rental;
+import com.javaRemote.project.service.BranchService;
 import com.javaRemote.project.service.RentalService;
 import org.springframework.stereotype.Service;
 
@@ -14,9 +15,11 @@ import java.util.List;
 public class RentalMapper {
 
     private final RentalService rentalService;
+    private final BranchService branchService;
 
-    public RentalMapper(RentalService rentalService) {
+    public RentalMapper(RentalService rentalService, BranchService branchService) {
         this.rentalService = rentalService;
+        this.branchService = branchService;
     }
 
     public List<RentalDto> getRentals(){
@@ -39,6 +42,18 @@ public class RentalMapper {
 //                .setBranches(rental.getBranches());
 //
 //    }
+
+    public Rental convertToRentalEntity(RentalDto rentalDto){
+        Rental rental = new Rental();
+        rental
+                .setRentalId(rentalDto.getRentalId())
+                .setNameRental(rentalDto.getNameRental())
+                .setInternetDomain(rentalDto.getInternetDomain())
+                .setContactAddress(rentalDto.getContactAddress())
+                .setOwner(rentalDto.getOwner())
+                .setBranches(branchService.getAllBranches());
+        return rental;
+    }
 
     public RentalDto convertToRentalDTO(Rental rental){
         RentalDto rentalDTO = new RentalDto();

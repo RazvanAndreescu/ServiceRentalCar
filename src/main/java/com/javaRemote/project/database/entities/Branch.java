@@ -66,11 +66,12 @@ public class Branch {
         this.reservations = reservations;
         return this;
     }
+
     public BranchDto convertToBranchDto(Branch branch){
         BranchDto branchDto = new BranchDto();
         return branchDto
                 .setBranchId(branch.getBranchId())
                 .setAddress(branch.getAddress())
-                .setRentalId(branch.getBranchId());
+                .setRentalId(branch.getRental().getRentalId());
     }
 }

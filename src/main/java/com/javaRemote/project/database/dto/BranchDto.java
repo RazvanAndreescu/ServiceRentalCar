@@ -1,11 +1,8 @@
 package com.javaRemote.project.database.dto;
 
-import com.javaRemote.project.database.entities.Branch;
 import com.javaRemote.project.database.entities.Car;
 import com.javaRemote.project.database.entities.Employee;
 import com.javaRemote.project.database.entities.Reservation;
-import com.javaRemote.project.repository.RentalRepository;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,8 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 public class BranchDto {
-
-    RentalRepository rentalRepository;
 
     private int branchId;
     private String address;
@@ -56,16 +51,5 @@ public class BranchDto {
         this.reservations = reservations;
         return this;
     }
-
-    public Branch convertToBranchEntity(@NotNull BranchDto branchDto){
-        Branch branch = new Branch();
-        return branch
-                .setBranchId(branchDto.getBranchId())
-                .setAddress(branchDto.getAddress())
-                // gaseste rentalul dupa id-ul rentaluluiDto din BranchDto
-                .setRental(rentalRepository.getById(branchDto.getBranchId()));
-
-    }
-
 
 }
