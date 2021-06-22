@@ -1,5 +1,6 @@
 package com.javaRemote.project.controllers;
 
+import com.javaRemote.project.database.dto.RentalDto;
 import com.javaRemote.project.database.entities.Rental;
 import com.javaRemote.project.service.RentalService;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +17,14 @@ public class RentalController {
     }
 
     @GetMapping("/")
-    public List<Rental> printAllRental(){
+    public List<RentalDto> printAllRental(){
         return rentalService.getAllRentals();
     }
 
     @PostMapping("/")
     @ResponseBody
-    public Rental createRental(@RequestBody Rental rental){
-        rentalService.createRental(rental);
-        return rental;
+    public Rental createRental(@RequestBody RentalDto rentalDto){
+        return rentalService.createRental(rentalDto);
     }
 
     @PutMapping("/{id}")

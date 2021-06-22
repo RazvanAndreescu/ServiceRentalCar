@@ -35,6 +35,15 @@ public class Car {
     @Column(name = "price")
     private int price;
 
+    @ManyToOne
+    @JoinColumn(name="branchid")
+    private Branch branch;
+
+    @OneToMany(mappedBy = "car")
+    @JsonIgnore
+    private List<Reservation> reservations;
+
+
     public Car setModel(String model) {
         this.model = model;
         return this;
@@ -64,13 +73,4 @@ public class Car {
         this.price = price;
         return this;
     }
-
-    @ManyToOne
-    @JoinColumn(name="branchid")
-    @JsonIgnore
-    private Branch branch;
-
-    @OneToMany(mappedBy = "car")
-    @JsonIgnore
-    private List<Reservation> reservations;
 }

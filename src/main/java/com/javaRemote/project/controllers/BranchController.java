@@ -1,5 +1,6 @@
 package com.javaRemote.project.controllers;
 
+import com.javaRemote.project.database.dto.BranchDto;
 import com.javaRemote.project.database.entities.Branch;
 import com.javaRemote.project.database.entities.Customer;
 import com.javaRemote.project.service.BranchService;
@@ -19,20 +20,19 @@ public class BranchController {
     }
 
     @GetMapping("/")
-    public List<Branch> printAllBranches() {
+    public List<BranchDto> printAllBranches() {
         return branchService.getAllBranches();
     }
 
     @PostMapping("/")
     @ResponseBody
-    public Branch createBranch(@RequestBody Branch branch) {
-        branchService.createBranch(branch);
-        return branch;
+    public Branch createBranch(@RequestBody BranchDto branchDto) {
+        return branchService.createBranch(branchDto);
     }
 
     @PutMapping("/{id}")
     @ResponseBody
-    public boolean updateBranch(@PathVariable int id, @RequestBody Branch branch){
+    public boolean updateBranch(@PathVariable int id, @RequestBody Branch branch) {
         if (branchService.getBranchById(id) != null) {
             branchService.updateBranchAddress(id, branch);
             return true;
