@@ -1,20 +1,22 @@
 package com.javaRemote.project.service;
 
+import com.javaRemote.project.database.dto.RentalDto;
 import com.javaRemote.project.database.entities.Rental;
-import com.javaRemote.project.database.mapper.RentalMapper;
 import com.javaRemote.project.repository.RentalRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class RentalService {
 
     private final RentalRepository rentalRepository;
+    private final ConvertorService convertorService;
 
-    private RentalMapper rentalMapper;
-
-    public RentalService(RentalRepository rentalRepository) {
+    public RentalService(RentalRepository rentalRepository, ConvertorService convertorService) {
         this.rentalRepository = rentalRepository;
+        this.convertorService = convertorService;
     }
 
     public Rental createRental(Rental rental){
@@ -41,5 +43,14 @@ public class RentalService {
 
     public void deleteRentalById(int id){
         rentalRepository.deleteById(id);
+    }
+
+    public List<RentalDto> getRentals(){
+        List<Rental> rentalEntityList = getAllRentals();
+        List<RentalDto> rentals = new ArrayList<>();
+        for(Rental rental: rentalEntityList){
+            rentals.add(convertorService.convertToRentalDTO(rental));
+        }
+        return rentals;
     }
 }

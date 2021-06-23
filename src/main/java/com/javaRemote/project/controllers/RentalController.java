@@ -2,7 +2,7 @@ package com.javaRemote.project.controllers;
 
 import com.javaRemote.project.database.dto.RentalDto;
 import com.javaRemote.project.database.entities.Rental;
-import com.javaRemote.project.database.mapper.RentalMapper;
+import com.javaRemote.project.service.ConvertorService;
 import com.javaRemote.project.service.RentalService;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,13 +11,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/rental")
 public class RentalController {
-    private RentalService rentalService;
+    private final RentalService rentalService;
 
-    private RentalMapper rentalMapper;
-
-    public RentalController(RentalService rentalService, RentalMapper rentalMapper) {
+    public RentalController(RentalService rentalService) {
         this.rentalService = rentalService;
-        this.rentalMapper = rentalMapper;
     }
 
     @GetMapping("/")
@@ -27,7 +24,7 @@ public class RentalController {
 
     @GetMapping("/dtoRentals")
     public List<RentalDto> printAllDtoRentals(){
-        return rentalMapper.getRentals();
+        return rentalService.getRentals();
     }
 
     @PostMapping("/")
