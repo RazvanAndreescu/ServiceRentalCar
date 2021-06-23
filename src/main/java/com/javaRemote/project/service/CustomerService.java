@@ -1,17 +1,22 @@
 package com.javaRemote.project.service;
 
+import com.javaRemote.project.database.dto.CustomerDto;
 import com.javaRemote.project.database.entities.Customer;
 import com.javaRemote.project.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CustomerService {
 
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
+    private final ConvertorService convertorService;
 
-    public CustomerService(CustomerRepository customerRepository) {
+    public CustomerService(CustomerRepository customerRepository, ConvertorService convertorService) {
         this.customerRepository = customerRepository;
+        this.convertorService = convertorService;
     }
 
     public Customer createCustomer(Customer customer) {
@@ -24,6 +29,14 @@ public class CustomerService {
 
     public Customer getCustomerById(int customerId) {
         return customerRepository.findCustomerByCustomerId(customerId);
+    }
+
+    public List<CustomerDto> getCustomersDto(){
+        List<CustomerDto> customerDtoList = new ArrayList<>();
+        for(Customer customer: customerRepository.findAll()){
+            customerDtoList.add(convertorService.convertToCustomerDto(customer));
+        }
+        return customerDtoList;
     }
 
     public Customer updateCustomer(int id, Customer customer) {

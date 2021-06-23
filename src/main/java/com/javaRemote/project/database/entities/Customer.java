@@ -30,6 +30,11 @@ public class Customer {
     @JsonIgnore
     private List<Reservation> reservations;
 
+    public Customer setCustomerId(int customerId) {
+        this.customerId = customerId;
+        return this;
+    }
+
     public Customer setNameCustomer(String nameCustomer) {
         this.nameCustomer = nameCustomer;
         return this;

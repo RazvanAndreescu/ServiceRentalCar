@@ -36,7 +36,7 @@ public class ReservationService {
     }
 
     public List<ReservationDto> getAllReservationDto(){
-        List<ReservationDto> reservationDtoList= new ArrayList<>();
+        List<ReservationDto> reservationDtoList = new ArrayList<>();
         List<Reservation> reservationList = reservationRepository.findAll();
         for (Reservation reservation: reservationList){
             reservationDtoList.add(convertorService.convertToReservationDto(reservation));

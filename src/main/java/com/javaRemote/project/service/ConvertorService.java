@@ -1,13 +1,7 @@
 package com.javaRemote.project.service;
 
-import com.javaRemote.project.database.dto.BranchDto;
-import com.javaRemote.project.database.dto.EmployeeDto;
-import com.javaRemote.project.database.dto.RentalDto;
-import com.javaRemote.project.database.dto.ReservationDto;
-import com.javaRemote.project.database.entities.Branch;
-import com.javaRemote.project.database.entities.Employee;
-import com.javaRemote.project.database.entities.Rental;
-import com.javaRemote.project.database.entities.Reservation;
+import com.javaRemote.project.database.dto.*;
+import com.javaRemote.project.database.entities.*;
 import com.javaRemote.project.repository.*;
 import com.sun.istack.NotNull;
 import org.springframework.stereotype.Service;
@@ -57,6 +51,30 @@ public class ConvertorService {
                 .setRentalId(branch.getRental().getRentalId());
     }
 
+    public Customer convertToCustomerEntity(CustomerDto customerDto){
+        Customer customer = new Customer();
+        return customer
+                .setCustomerId(customerDto.getCustomerId())
+                .setNameCustomer(customerDto.getNameCustomer())
+                .setEmail(customerDto.getEmail())
+                .setDrivingExperience(customer.getDrivingExperience())
+                .setReservations(reservationRepository.findReservationsByCustomer_CustomerId(customerDto.getCustomerId()));
+    }
+
+    public CustomerDto convertToCustomerDto(Customer customer){
+        CustomerDto customerDto = new CustomerDto();
+        List<ReservationDto> reservationDtoList = new ArrayList<>();
+        for(Reservation reservation: customer.getReservations()){
+            reservationDtoList.add(convertToReservationDto(reservation));
+        }
+        return customerDto
+                .setCustomerId(customer.getCustomerId())
+                .setNameCustomer(customer.getNameCustomer())
+                .setEmail(customer.getEmail())
+                .setDrivingExperience(customer.getDrivingExperience())
+                .setReservationDtoList(reservationDtoList);
+    }
+
     public Employee convertToEmployeeEntity(EmployeeDto employeeDto){
         Employee employee = new Employee();
         return employee
@@ -83,17 +101,15 @@ public class ConvertorService {
                 .setInternetDomain(rentalDto.getInternetDomain())
                 .setContactAddress(rentalDto.getContactAddress())
                 .setOwner(rentalDto.getOwner())
-                .setBranches(branchRepository.findAll());
+                .setBranches(branchRepository.getBranchesByRental_RentalId(rental.getRentalId()));
         return rental;
     }
 
     public RentalDto convertToRentalDTO(Rental rental){
         RentalDto rentalDTO = new RentalDto();
-        BranchDto branchDto;
         List<BranchDto> branchDtoList = new ArrayList<>();
         for (Branch localBranch: rental.getBranches()){
-            branchDto = convertToBranchDto(localBranch);
-            branchDtoList.add(branchDto);
+            branchDtoList.add(convertToBranchDto(localBranch));
         }
         rentalDTO.setRentalId(rental.getRentalId())
                 .setNameRental(rental.getNameRental())
