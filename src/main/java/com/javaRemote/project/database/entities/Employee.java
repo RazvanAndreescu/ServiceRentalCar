@@ -25,6 +25,11 @@ public class Employee {
     @JoinColumn(name="branchid")
     private Branch branch;
 
+    public Employee setEmployeeId(int employeeId) {
+        this.employeeId = employeeId;
+        return this;
+    }
+
     public Employee setNameEmployee(String nameEmployee) {
         this.nameEmployee = nameEmployee;
         return this;

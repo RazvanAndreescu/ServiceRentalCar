@@ -31,6 +31,15 @@ public class RentalService {
         return rentalRepository.getById(id);
     }
 
+    public List<RentalDto> getRentals(){
+        List<Rental> rentalEntityList = getAllRentals();
+        List<RentalDto> rentals = new ArrayList<>();
+        for(Rental rental: rentalEntityList){
+            rentals.add(convertorService.convertToRentalDTO(rental));
+        }
+        return rentals;
+    }
+
     public Rental updateRental(int id, Rental rental){
         Rental rentalToUpdate = rentalRepository.getById(id);
         rentalToUpdate
@@ -43,14 +52,5 @@ public class RentalService {
 
     public void deleteRentalById(int id){
         rentalRepository.deleteById(id);
-    }
-
-    public List<RentalDto> getRentals(){
-        List<Rental> rentalEntityList = getAllRentals();
-        List<RentalDto> rentals = new ArrayList<>();
-        for(Rental rental: rentalEntityList){
-            rentals.add(convertorService.convertToRentalDTO(rental));
-        }
-        return rentals;
     }
 }

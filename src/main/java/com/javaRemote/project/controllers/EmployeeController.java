@@ -1,5 +1,6 @@
 package com.javaRemote.project.controllers;
 
+import com.javaRemote.project.database.dto.EmployeeDto;
 import com.javaRemote.project.database.entities.Employee;
 import com.javaRemote.project.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,11 @@ public class EmployeeController {
     @GetMapping("/")
     public List<Employee> getAllEmployees(){
         return employeeService.getAllEmployees();
+    }
+
+    @GetMapping("/dto")
+    public List<EmployeeDto> getAllEmployeesDto(){
+        return employeeService.getAllDtoEmployees();
     }
 
     @PostMapping("/")

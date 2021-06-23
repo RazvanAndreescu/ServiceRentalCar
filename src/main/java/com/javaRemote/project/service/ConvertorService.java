@@ -1,9 +1,11 @@
 package com.javaRemote.project.service;
 
 import com.javaRemote.project.database.dto.BranchDto;
+import com.javaRemote.project.database.dto.EmployeeDto;
 import com.javaRemote.project.database.dto.RentalDto;
 import com.javaRemote.project.database.dto.ReservationDto;
 import com.javaRemote.project.database.entities.Branch;
+import com.javaRemote.project.database.entities.Employee;
 import com.javaRemote.project.database.entities.Rental;
 import com.javaRemote.project.database.entities.Reservation;
 import com.javaRemote.project.repository.*;
@@ -53,6 +55,24 @@ public class ConvertorService {
                 .setBranchId(branch.getBranchId())
                 .setAddress(branch.getAddress())
                 .setRentalId(branch.getRental().getRentalId());
+    }
+
+    public Employee convertToEmployeeEntity(EmployeeDto employeeDto){
+        Employee employee = new Employee();
+        return employee
+                .setEmployeeId(employeeDto.getEmployeeId())
+                .setNameEmployee(employeeDto.getNameEmployee())
+                .setRoleEmployee(employee.getRoleEmployee())
+                .setBranch(branchRepository.getById(employeeDto.getBranchId()));
+    }
+
+    public EmployeeDto convertToEmployeeDto(Employee employee){
+        EmployeeDto employeeDto = new EmployeeDto();
+        return employeeDto
+                .setEmployeeId(employee.getEmployeeId())
+                .setNameEmployee(employee.getNameEmployee())
+                .setRoleEmployee(employee.getRoleEmployee())
+                .setBranchId(employee.getBranch().getBranchId());
     }
 
     public Rental convertToRentalEntity(RentalDto rentalDto){
