@@ -1,17 +1,22 @@
 package com.javaRemote.project.service;
 
+import com.javaRemote.project.database.dto.ReservationDto;
 import com.javaRemote.project.database.entities.Reservation;
 import com.javaRemote.project.repository.ReservationRepository;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class ReservationService {
 
     private ReservationRepository reservationRepository;
+    private ConvertorService convertorService;
 
-    public ReservationService(ReservationRepository reservationRepository) {
+    public ReservationService(ReservationRepository reservationRepository, ConvertorService convertorService) {
         this.reservationRepository = reservationRepository;
+        this.convertorService = convertorService;
     }
 
     public Reservation create(Reservation reservation){
@@ -28,6 +33,15 @@ public class ReservationService {
 
     public List<Reservation> getAllReservationsForACustomer(int id){
         return reservationRepository.findReservationsByCustomer_CustomerId(id);
+    }
+
+    public List<ReservationDto> getAllReservationDto(){
+        List<ReservationDto> reservationDtoList= new ArrayList<>();
+        List<Reservation> reservationList = reservationRepository.findAll();
+        for (Reservation reservation: reservationList){
+            reservationDtoList.add(convertorService.convertToReservationDto(reservation));
+        }
+        return reservationDtoList;
     }
 
     public Reservation updateReservation(int id, Reservation jsonReservation){

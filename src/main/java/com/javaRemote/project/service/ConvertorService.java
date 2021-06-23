@@ -2,8 +2,10 @@ package com.javaRemote.project.service;
 
 import com.javaRemote.project.database.dto.BranchDto;
 import com.javaRemote.project.database.dto.RentalDto;
+import com.javaRemote.project.database.dto.ReservationDto;
 import com.javaRemote.project.database.entities.Branch;
 import com.javaRemote.project.database.entities.Rental;
+import com.javaRemote.project.database.entities.Reservation;
 import com.javaRemote.project.repository.*;
 import com.sun.istack.NotNull;
 import org.springframework.stereotype.Service;
@@ -80,5 +82,32 @@ public class ConvertorService {
                 .setOwner(rental.getOwner())
                 .setBranches(branchDtoList);
         return rentalDTO;
+    }
+
+    public Reservation convertToReservation(ReservationDto reservationDto){
+        Reservation reservation = new Reservation();
+        reservation
+                .setReservationId(reservationDto.getReservationId())
+                .setStartDate(reservationDto.getStartDate())
+                .setEndDate(reservationDto.getEndDate())
+                .setPrice(reservationDto.getPrice())
+                .setBranch(branchRepository.getById(reservationDto.getBranchId()))
+                .setCustomer(customerRepository.getById(reservationDto.getCustomerId()))
+                .setCar(carRepository.getById(reservationDto.getCarId()));
+
+        return reservation;
+    }
+
+    public ReservationDto convertToReservationDto(Reservation reservation){
+        ReservationDto reservationDto = new ReservationDto();
+        reservationDto
+                .setReservationId(reservation.getReservationId())
+                .setStartDate(reservation.getStartDate())
+                .setEndDate(reservation.getEndDate())
+                .setPrice(reservation.getPrice())
+                .setBranchId(reservation.getBranch().getBranchId())
+                .setCustomerId(reservation.getCustomer().getCustomerId())
+                .setCarId(reservation.getCar().getCarId());
+        return reservationDto;
     }
 }

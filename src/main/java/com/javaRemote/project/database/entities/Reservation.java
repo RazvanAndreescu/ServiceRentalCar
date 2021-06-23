@@ -37,6 +37,11 @@ public class Reservation {
     @JoinColumn(name = "carid")
     private Car car;
 
+    public Reservation setReservationId(int reservationId) {
+        this.reservationId = reservationId;
+        return this;
+    }
+
     public Reservation setStartDate(Date startDate) {
         this.startDate = startDate;
         return this;
