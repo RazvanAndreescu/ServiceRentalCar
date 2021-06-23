@@ -3,6 +3,7 @@ package com.javaRemote.project.service;
 import com.javaRemote.project.database.dto.RentalDto;
 import com.javaRemote.project.database.entities.Rental;
 import com.javaRemote.project.repository.RentalRepository;
+import com.javaRemote.project.service.convertor.ConvertorService;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

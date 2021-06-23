@@ -13,6 +13,7 @@ public class CarDto {
     private int carId;
     private String model;
     private String transmission;
+    private String bodyType;
     private String yearCar;
     private String status;
     private int price;
@@ -31,6 +32,11 @@ public class CarDto {
 
     public CarDto setTransmission(String transmission) {
         this.transmission = transmission;
+        return this;
+    }
+
+    public CarDto setBodyType(String bodyType) {
+        this.bodyType = bodyType;
         return this;
     }
 

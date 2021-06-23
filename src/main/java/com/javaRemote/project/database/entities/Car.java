@@ -43,6 +43,11 @@ public class Car {
     @JsonIgnore
     private List<Reservation> reservations;
 
+    public Car setCarId(int carId) {
+        this.carId = carId;
+        return this;
+    }
+
     public Car setModel(String model) {
         this.model = model;
         return this;
@@ -70,6 +75,16 @@ public class Car {
 
     public Car setPrice(int price) {
         this.price = price;
+        return this;
+    }
+
+    public Car setBranch(Branch branch) {
+        this.branch = branch;
+        return this;
+    }
+
+    public Car setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
         return this;
     }
 }

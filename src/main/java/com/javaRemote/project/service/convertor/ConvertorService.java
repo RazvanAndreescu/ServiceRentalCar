@@ -1,4 +1,4 @@
-package com.javaRemote.project.service;
+package com.javaRemote.project.service.convertor;
 
 import com.javaRemote.project.database.dto.*;
 import com.javaRemote.project.database.entities.*;
@@ -49,6 +49,38 @@ public class ConvertorService {
                 .setBranchId(branch.getBranchId())
                 .setAddress(branch.getAddress())
                 .setRentalId(branch.getRental().getRentalId());
+    }
+
+    private Car convertToCarEntity(CarDto carDto){
+        Car car = new Car();
+        return car
+                .setCarId(carDto.getCarId())
+                .setModel(carDto.getModel())
+                .setTransmission(carDto.getTransmission())
+                .setBodyType(carDto.getBodyType())
+                .setYearCar(carDto.getYearCar())
+                .setStatus(carDto.getStatus())
+                .setPrice(carDto.getPrice())
+                .setBranch(branchRepository.getById(carDto.getBranchId()))
+                .setReservations(reservationRepository.findReservationsByCar_CarId(car.getCarId()));
+    }
+
+    public CarDto convertToCarDto(Car car){
+        CarDto carDto = new CarDto();
+        List <ReservationDto> reservationDtoList = new ArrayList<>();
+        for(Reservation reservation: reservationRepository.findReservationsByCar_CarId(car.getCarId())){
+            reservationDtoList.add(convertToReservationDto(reservation));
+        }
+        return carDto
+                .setCarId(car.getCarId())
+                .setModel(car.getModel())
+                .setTransmission(car.getTransmission())
+                .setBodyType(car.getBodyType())
+                .setYearCar(car.getYearCar())
+                .setStatus(car.getStatus())
+                .setPrice(car.getPrice())
+                .setBranchId(car.getBranch().getBranchId())
+                .setReservationDtoList(reservationDtoList);
     }
 
     public Customer convertToCustomerEntity(CustomerDto customerDto){

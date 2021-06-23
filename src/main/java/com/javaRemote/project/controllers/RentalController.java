@@ -2,7 +2,6 @@ package com.javaRemote.project.controllers;
 
 import com.javaRemote.project.database.dto.RentalDto;
 import com.javaRemote.project.database.entities.Rental;
-import com.javaRemote.project.service.ConvertorService;
 import com.javaRemote.project.service.RentalService;
 import org.springframework.web.bind.annotation.*;
 
