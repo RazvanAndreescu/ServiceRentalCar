@@ -5,7 +5,6 @@ import com.javaRemote.project.database.entities.Rental;
 import com.javaRemote.project.repository.RentalRepository;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
