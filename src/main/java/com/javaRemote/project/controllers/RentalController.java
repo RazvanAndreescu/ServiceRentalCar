@@ -17,26 +17,26 @@ public class RentalController {
     }
 
     @GetMapping("/")
-    public List<Rental> printAllRental(){
+    public List<Rental> printAllRental() {
         return rentalService.getAllRentals();
     }
 
     @GetMapping("/dtoRentals")
-    public List<RentalDto> printAllDtoRentals(){
+    public List<RentalDto> printAllDtoRentals() {
         return rentalService.getRentals();
     }
 
     @PostMapping("/")
     @ResponseBody
-    public Rental createRental(@RequestBody Rental rental){
+    public Rental createRental(@RequestBody Rental rental) {
         rentalService.createRental(rental);
         return rental;
     }
 
     @PutMapping("/{id}")
     @ResponseBody
-    public boolean updateRental(@PathVariable int id, @RequestBody Rental rental){
-        if(rentalService.getRentalsById(id) != null){
+    public boolean updateRental(@PathVariable int id, @RequestBody Rental rental) {
+        if (rentalService.getRentalsById(id) != null) {
             rentalService.updateRental(id, rental);
             return true;
         }
@@ -44,8 +44,8 @@ public class RentalController {
     }
 
     @DeleteMapping("/{id}")
-    public boolean deleteRental(@PathVariable int id){
-        if(rentalService.getRentalsById(id) != null){
+    public boolean deleteRental(@PathVariable int id) {
+        if (rentalService.getRentalsById(id) != null) {
             rentalService.deleteRentalById(id);
             return true;
         }

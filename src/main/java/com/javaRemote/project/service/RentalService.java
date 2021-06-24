@@ -20,38 +20,38 @@ public class RentalService {
         this.convertorService = convertorService;
     }
 
-    public Rental createRental(Rental rental){
+    public Rental createRental(Rental rental) {
         return rentalRepository.save(rental);
     }
 
-    public List<Rental> getAllRentals(){
+    public List<Rental> getAllRentals() {
         return rentalRepository.findAll();
     }
 
-    public Rental getRentalsById(int id){
+    public Rental getRentalsById(int id) {
         return rentalRepository.getById(id);
     }
 
-    public List<RentalDto> getRentals(){
+    public List<RentalDto> getRentals() {
         List<Rental> rentalEntityList = getAllRentals();
         List<RentalDto> rentals = new ArrayList<>();
-        for(Rental rental: rentalEntityList){
+        for (Rental rental : rentalEntityList) {
             rentals.add(convertorService.convertToRentalDTO(rental));
         }
         return rentals;
     }
 
-    public Rental updateRental(int id, Rental rental){
+    public Rental updateRental(int id, Rental rental) {
         Rental rentalToUpdate = rentalRepository.getById(id);
         rentalToUpdate
-                .setNameRental(rental.getNameRental() != null? rental.getNameRental() : rentalToUpdate.getNameRental())
-                .setContactAddress(rental.getContactAddress() != null? rental.getContactAddress() : rentalToUpdate.getContactAddress())
-                .setInternetDomain(rental.getInternetDomain() != null? rental.getInternetDomain() : rentalToUpdate.getInternetDomain())
-                .setOwner(rental.getOwner() != null? rental.getOwner() : rentalToUpdate.getOwner());
+                .setNameRental(rental.getNameRental() != null ? rental.getNameRental() : rentalToUpdate.getNameRental())
+                .setContactAddress(rental.getContactAddress() != null ? rental.getContactAddress() : rentalToUpdate.getContactAddress())
+                .setInternetDomain(rental.getInternetDomain() != null ? rental.getInternetDomain() : rentalToUpdate.getInternetDomain())
+                .setOwner(rental.getOwner() != null ? rental.getOwner() : rentalToUpdate.getOwner());
         return rentalRepository.save(rentalToUpdate);
     }
 
-    public void deleteRentalById(int id){
+    public void deleteRentalById(int id) {
         rentalRepository.deleteById(id);
     }
 }

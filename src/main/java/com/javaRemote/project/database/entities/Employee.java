@@ -2,6 +2,7 @@ package com.javaRemote.project.database.entities;
 
 import lombok.Getter;
 import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 
 @Entity
@@ -22,7 +23,7 @@ public class Employee {
     private String roleEmployee;
 
     @ManyToOne
-    @JoinColumn(name="branchid")
+    @JoinColumn(name = "branchid")
     private Branch branch;
 
     public Employee setEmployeeId(int employeeId) {

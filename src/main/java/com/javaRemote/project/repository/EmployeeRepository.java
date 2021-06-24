@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     Employee findEmployeeByEmployeeId(int id);
+
     List<Employee> findEmployeesByBranch_BranchId(int branchId);
 }

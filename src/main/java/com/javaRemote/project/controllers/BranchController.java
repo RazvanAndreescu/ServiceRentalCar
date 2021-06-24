@@ -1,5 +1,6 @@
 package com.javaRemote.project.controllers;
 
+import com.javaRemote.project.database.dto.BranchDto;
 import com.javaRemote.project.database.entities.Branch;
 import com.javaRemote.project.service.BranchService;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,11 @@ public class BranchController {
         return branchService.getAllBranches();
     }
 
+    @GetMapping("/dto")
+    public List<BranchDto> printAllBranchesDto(){
+        return branchService.getAllBranchesDto();
+    }
+
     // TODO: 10.06.2021 validation for rentalId;
     @PostMapping("/")
     @ResponseBody
@@ -32,7 +38,7 @@ public class BranchController {
     // TODO: 10.06.2021 validation for rentalId;
     @PutMapping("/{id}")
     @ResponseBody
-    public boolean updateBranch(@PathVariable int id, @RequestBody Branch branch){
+    public boolean updateBranch(@PathVariable int id, @RequestBody Branch branch) {
         if (branchService.getBranchById(id) != null) {
             branchService.updateBranchAddress(id, branch);
             return true;

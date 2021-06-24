@@ -20,35 +20,35 @@ public class ReservationService {
         this.convertorService = convertorService;
     }
 
-    public Reservation create(Reservation reservation){
+    public Reservation create(Reservation reservation) {
         return reservationRepository.save(reservation);
     }
 
-    public List<Reservation> getAllReservation(){
+    public List<Reservation> getAllReservation() {
         return reservationRepository.findAll();
     }
 
-    public Reservation getReservationById(int id){
+    public Reservation getReservationById(int id) {
         return reservationRepository.findReservationByReservationId(id);
     }
 
-    public List<Reservation> getAllReservationsForACustomer(int id){
+    public List<Reservation> getAllReservationsForACustomer(int id) {
         return reservationRepository.findReservationsByCustomer_CustomerId(id);
     }
 
-    public List<ReservationDto> getAllReservationDto(){
+    public List<ReservationDto> getAllReservationDto() {
         List<ReservationDto> reservationDtoList = new ArrayList<>();
         List<Reservation> reservationList = reservationRepository.findAll();
-        for (Reservation reservation: reservationList){
+        for (Reservation reservation : reservationList) {
             reservationDtoList.add(convertorService.convertToReservationDto(reservation));
         }
         return reservationDtoList;
     }
 
-    public Reservation updateReservation(int id, Reservation jsonReservation){
+    public Reservation updateReservation(int id, Reservation jsonReservation) {
         Reservation databaseReservation = reservationRepository.findReservationByReservationId(id);
         databaseReservation
-                .setStartDate(jsonReservation.getStartDate() != null ? jsonReservation.getStartDate():databaseReservation.getStartDate())
+                .setStartDate(jsonReservation.getStartDate() != null ? jsonReservation.getStartDate() : databaseReservation.getStartDate())
                 .setEndDate(jsonReservation.getEndDate() != null ? jsonReservation.getEndDate() : databaseReservation.getEndDate())
                 .setPrice(jsonReservation.getPrice() != 0 ? jsonReservation.getPrice() : databaseReservation.getPrice())
                 .setBranch(jsonReservation.getBranch() != null ? jsonReservation.getBranch() : databaseReservation.getBranch())
@@ -57,7 +57,7 @@ public class ReservationService {
         return reservationRepository.save(databaseReservation);
     }
 
-    public void deleteReservationById(int id){
+    public void deleteReservationById(int id) {
         reservationRepository.deleteById(id);
     }
 }

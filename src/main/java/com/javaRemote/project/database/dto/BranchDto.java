@@ -1,8 +1,5 @@
 package com.javaRemote.project.database.dto;
 
-import com.javaRemote.project.database.entities.Car;
-import com.javaRemote.project.database.entities.Employee;
-import com.javaRemote.project.database.entities.Reservation;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,9 +15,9 @@ public class BranchDto {
     private String address;
     private int rentalId;
 
-    private List<Car> cars;
-    private List<Employee> employees;
-    private List<Reservation> reservations;
+    private List<CarDto> carsDto;
+    private List<EmployeeDto> employeesDto;
+    private List<ReservationDto> reservationsDto;
 
     public BranchDto setBranchId(int branchId) {
         this.branchId = branchId;
@@ -37,19 +34,18 @@ public class BranchDto {
         return this;
     }
 
-    public BranchDto setCars(List<Car> cars) {
-        this.cars = cars;
+    public BranchDto setCarsDto(List<CarDto> carsDto) {
+        this.carsDto = carsDto;
         return this;
     }
 
-    public BranchDto setEmployees(List<Employee> employees) {
-        this.employees = employees;
+    public BranchDto setEmployeesDto(List<EmployeeDto> employeesDto) {
+        this.employeesDto = employeesDto;
         return this;
     }
 
-    public BranchDto setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
+    public BranchDto setReservationsDto(List<ReservationDto> reservationsDto) {
+        this.reservationsDto = reservationsDto;
         return this;
     }
-
 }

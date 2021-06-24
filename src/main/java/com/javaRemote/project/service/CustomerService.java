@@ -32,9 +32,9 @@ public class CustomerService {
         return customerRepository.findCustomerByCustomerId(customerId);
     }
 
-    public List<CustomerDto> getCustomersDto(){
+    public List<CustomerDto> getCustomersDto() {
         List<CustomerDto> customerDtoList = new ArrayList<>();
-        for(Customer customer: customerRepository.findAll()){
+        for (Customer customer : customerRepository.findAll()) {
             customerDtoList.add(convertorService.convertToCustomerDto(customer));
         }
         return customerDtoList;

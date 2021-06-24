@@ -23,7 +23,7 @@ public class CustomerController {
     }
 
     @GetMapping("/dto")
-    public List<CustomerDto> printAllCustomersDto(){
+    public List<CustomerDto> printAllCustomersDto() {
         return customerService.getCustomersDto();
     }
 
@@ -35,7 +35,7 @@ public class CustomerController {
 
     @PutMapping("/{id}")
     @ResponseBody
-    public boolean updateCustomer(@PathVariable int id, @RequestBody Customer customer){
+    public boolean updateCustomer(@PathVariable int id, @RequestBody Customer customer) {
         if (customerService.getCustomerById(id) != null) {
             customerService.updateCustomer(id, customer);
             return true;

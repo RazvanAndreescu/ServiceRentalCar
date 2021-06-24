@@ -3,6 +3,7 @@ package com.javaRemote.project.database.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class Branch {
     private String address;
 
     @ManyToOne
-    @JoinColumn(name="rentalid")
+    @JoinColumn(name = "rentalid")
     private Rental rental;
 
     @OneToMany(mappedBy = "branch")

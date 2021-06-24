@@ -27,19 +27,19 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Employee getEmployeeById(int id){
+    public Employee getEmployeeById(int id) {
         return employeeRepository.findEmployeeByEmployeeId(id);
     }
 
-    public List<EmployeeDto> getAllDtoEmployees(){
+    public List<EmployeeDto> getAllDtoEmployees() {
         List<EmployeeDto> dtoEmployeeList = new ArrayList<>();
-        for(Employee employee: employeeRepository.findAll()){
+        for (Employee employee : employeeRepository.findAll()) {
             dtoEmployeeList.add(convertorService.convertToEmployeeDto(employee));
         }
         return dtoEmployeeList;
     }
 
-    public Employee updateEmployee(int id, Employee jsonEmployee){
+    public Employee updateEmployee(int id, Employee jsonEmployee) {
         Employee databaseEmployee = employeeRepository.getById(id);
         databaseEmployee
                 .setNameEmployee(jsonEmployee.getNameEmployee() != null ? jsonEmployee.getNameEmployee() : databaseEmployee.getNameEmployee())
@@ -49,7 +49,7 @@ public class EmployeeService {
     }
 
     public void deleteEmployeeById(int id) {
-       employeeRepository.deleteById(id);
+        employeeRepository.deleteById(id);
     }
 
 }
