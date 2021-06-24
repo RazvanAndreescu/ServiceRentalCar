@@ -38,7 +38,6 @@ public class ConvertorService {
         return branch
                 .setBranchId(branchDto.getBranchId())
                 .setAddress(branchDto.getAddress())
-                // gaseste rentalul dupa id-ul rentaluluiDto din BranchDto
                 .setRental(rentalRepository.getById(branchDto.getBranchId()))
                 .setCars(carRepository.findCarsByBranch_BranchId(branchDto.getBranchId()))
                 .setEmployees(employeeRepository.findEmployeesByBranch_BranchId(branchDto.getBranchId()))
