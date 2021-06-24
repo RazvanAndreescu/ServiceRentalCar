@@ -1,28 +1,29 @@
 package com.javaRemote.project.database.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.javaRemote.project.database.dto.BranchDto;
 import lombok.Getter;
 import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Getter
 @Proxy(lazy = false)
 @Table(name = "branch")
-public class Branch {
+public class Branch implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "branchid")
-    private int branchId;
+    private Integer branchId;
 
     @Column(name = "address")
     private String address;
 
     @ManyToOne
-    @JoinColumn(name="rentalid")
+    @JoinColumn(name = "rentalid")
     private Rental rental;
 
     @OneToMany(mappedBy = "branch")
@@ -37,15 +38,7 @@ public class Branch {
     @JsonIgnore
     private List<Reservation> reservations;
 
-    public BranchDto convertToDto(){
-        BranchDto branchDto = new BranchDto();
-        branchDto.setBranchId(branchId)
-                .setAddress(address)
-                .setRentalId(rental.getRentalId());
-        return branchDto;
-    }
-
-    public Branch setBranchId(int branchId) {
+    public Branch setBranchId(Integer branchId) {
         this.branchId = branchId;
         return this;
     }

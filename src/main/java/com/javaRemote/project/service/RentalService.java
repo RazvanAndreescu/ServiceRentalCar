@@ -5,6 +5,7 @@ import com.javaRemote.project.database.entities.Rental;
 import com.javaRemote.project.repository.RentalRepository;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,32 +18,60 @@ public class RentalService {
         this.rentalRepository = rentalRepository;
     }
 
-    public Rental createRental(RentalDto rentalDto){
-        return rentalRepository.save(rentalDto.convertToRental());
+    public Rental createRental(RentalDto rentalDto) {
+        return rentalRepository.save(convertToRental(rentalDto));
     }
 
     public List<RentalDto> getAllRentals() {
         List<RentalDto> rentalDtoList = new ArrayList<>();
+
         for (Rental rental : rentalRepository.findAll()) {
-            rentalDtoList.add(rental.convertToDto());
+            rentalDtoList.add(convertToRentalDto(rental));
         }
+
         return rentalDtoList;
     }
 
-    public Rental getRentalsById(int id) {
-        return rentalRepository.getById(id);
+    public Rental getRentalBy(int rentalId) {
+        return rentalRepository.getById(rentalId);
     }
 
-    public Rental updateRental(int id, Rental rental) {
-        Rental rentalToUpdate = rentalRepository.getById(id);
-        rentalToUpdate.setNameRental(rental.getNameRental() != null ? rental.getNameRental() : rentalToUpdate.getNameRental())
-                .setContactAddress(rental.getContactAddress() != null ? rental.getContactAddress() : rentalToUpdate.getContactAddress())
-                .setInternetDomain(rental.getInternetDomain() != null ? rental.getInternetDomain() : rentalToUpdate.getInternetDomain())
-                .setOwner(rental.getOwner() != null ? rental.getOwner() : rentalToUpdate.getOwner());
+    public Rental updateRental(int rentalId, RentalDto rentalDto) {
+        Rental rentalToUpdate = rentalRepository.getById(rentalId);
+
+        rentalToUpdate.setNameRental(rentalDto.getNameRental() != null ? rentalDto.getNameRental() : rentalToUpdate.getNameRental())
+                .setContactAddress(rentalDto.getContactAddress() != null ? rentalDto.getContactAddress() : rentalToUpdate.getContactAddress())
+                .setInternetDomain(rentalDto.getInternetDomain() != null ? rentalDto.getInternetDomain() : rentalToUpdate.getInternetDomain())
+                .setOwner(rentalDto.getOwner() != null ? rentalDto.getOwner() : rentalToUpdate.getOwner());
+
         return rentalRepository.save(rentalToUpdate);
     }
 
-    public void deleteRentalById(int id) {
-        rentalRepository.deleteById(id);
+    public void deleteRentalById(int rentalId) {
+            rentalRepository.deleteById(rentalId);
+    }
+
+    private Rental convertToRental(RentalDto rentalDto) {
+        Rental rental = new Rental();
+
+        rental.setRentalId(rentalDto.getRentalId())
+                .setNameRental(rentalDto.getNameRental())
+                .setInternetDomain(rentalDto.getInternetDomain())
+                .setContactAddress(rentalDto.getContactAddress())
+                .setOwner(rentalDto.getOwner());
+
+        return rental;
+    }
+
+    private RentalDto convertToRentalDto(Rental rental) {
+        RentalDto rentalDto = new RentalDto();
+
+        rentalDto.setRentalId(rental.getRentalId())
+                .setNameRental(rental.getNameRental())
+                .setInternetDomain(rental.getInternetDomain())
+                .setContactAddress(rental.getContactAddress())
+                .setOwner(rental.getOwner());
+
+        return rentalDto;
     }
 }

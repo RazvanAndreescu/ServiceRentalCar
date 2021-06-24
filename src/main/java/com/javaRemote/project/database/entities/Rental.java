@@ -1,20 +1,20 @@
 package com.javaRemote.project.database.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.javaRemote.project.database.dto.RentalDto;
 import lombok.Getter;
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Getter
 @Table(name = "rental")
-public class Rental {
+public class Rental implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rentalid")
-    private int rentalId;
+    private Integer rentalId;
 
     @Column(name = "namerental")
     private String nameRental;
@@ -32,17 +32,7 @@ public class Rental {
     @JsonIgnore
     private List<Branch> branches;
 
-    public RentalDto convertToDto(){
-        RentalDto rentalDto = new RentalDto();
-        rentalDto.setRentalId(rentalId)
-                .setNameRental(nameRental)
-                .setInternetDomain(internetDomain)
-                .setContactAddress(contactAddress)
-                .setOwner(owner);
-        return rentalDto;
-    }
-
-    public Rental setRentalId(int rentalId) {
+    public Rental setRentalId(Integer rentalId) {
         this.rentalId = rentalId;
         return this;
     }

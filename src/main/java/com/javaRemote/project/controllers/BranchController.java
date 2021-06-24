@@ -2,9 +2,7 @@ package com.javaRemote.project.controllers;
 
 import com.javaRemote.project.database.dto.BranchDto;
 import com.javaRemote.project.database.entities.Branch;
-import com.javaRemote.project.database.entities.Customer;
 import com.javaRemote.project.service.BranchService;
-import com.javaRemote.project.service.CustomerService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,22 +28,28 @@ public class BranchController {
         return branchService.createBranch(branchDto);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{branchId}")
     @ResponseBody
-    public boolean updateBranch(@PathVariable int id, @RequestBody Branch branch) {
-        if (branchService.getBranchById(id) != null) {
-            branchService.updateBranchAddress(id, branch);
+    public boolean updateBranch(@PathVariable Integer branchId, @RequestBody BranchDto branchDto) {
+        if (branchService.getBranchById(branchId) != null) {
+            branchService.updateBranchAddress(branchId, branchDto);
             return true;
         }
+
         return false;
     }
 
-    @DeleteMapping("/{id}")
-    public boolean deleteBranchById(@PathVariable int id) {
-        if (branchService.getBranchById(id) != null) {
-            branchService.deleteBranchById(id);
-            return true;
+    @DeleteMapping("/{branchId}")
+    public boolean deleteBranchById(@PathVariable Integer branchId) {
+        if (branchService.getBranchById(branchId) != null) {
+            try {
+                branchService.deleteBranchById(branchId);
+                return true;
+            } catch (Exception exception){
+                exception.printStackTrace();
+            }
         }
+
         return false;
     }
 }

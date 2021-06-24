@@ -17,32 +17,38 @@ public class RentalController {
     }
 
     @GetMapping("/")
-    public List<RentalDto> printAllRental(){
+    public List<RentalDto> printAllRental() {
         return rentalService.getAllRentals();
     }
 
     @PostMapping("/")
     @ResponseBody
-    public Rental createRental(@RequestBody RentalDto rentalDto){
+    public Rental createRental(@RequestBody RentalDto rentalDto) {
         return rentalService.createRental(rentalDto);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{rentalId}")
     @ResponseBody
-    public boolean updateRental(@PathVariable int id, @RequestBody Rental rental){
-        if(rentalService.getRentalsById(id) != null){
-            rentalService.updateRental(id, rental);
+    public boolean updateRental(@PathVariable Integer rentalId, @RequestBody RentalDto rentalDto) {
+        if (rentalService.getRentalBy(rentalId) != null) {
+            rentalService.updateRental(rentalId, rentalDto);
             return true;
         }
+
         return false;
     }
 
-    @DeleteMapping("/{id}")
-    public boolean deleteRental(@PathVariable int id){
-        if(rentalService.getRentalsById(id) != null){
-            rentalService.deleteRentalById(id);
-            return true;
+    @DeleteMapping("/{rentalId}")
+    public boolean deleteRental(@PathVariable Integer rentalId) {
+        if (rentalService.getRentalBy(rentalId) != null) {
+            try {
+                rentalService.deleteRentalById(rentalId);
+                return true;
+            } catch (Exception exception) {
+                exception.printStackTrace();
+            }
         }
+
         return false;
     }
 }
