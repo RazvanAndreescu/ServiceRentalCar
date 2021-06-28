@@ -15,7 +15,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "customerid")
-    private int customerId;
+    private Integer customerId;
 
     @Column(name = "namecustomer")
     private String nameCustomer;
@@ -24,11 +24,16 @@ public class Customer {
     private String email;
 
     @Column(name = "drivingexperience")
-    private int drivingExperience;
+    private Integer drivingExperience;
 
     @OneToMany(mappedBy = "customer")
     @JsonIgnore
     private List<Reservation> reservations;
+
+    public Customer setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+        return this;
+    }
 
     public Customer setNameCustomer(String nameCustomer) {
         this.nameCustomer = nameCustomer;
@@ -40,13 +45,8 @@ public class Customer {
         return this;
     }
 
-    public Customer setDrivingExperience(int drivingExperience) {
+    public Customer setDrivingExperience(Integer drivingExperience) {
         this.drivingExperience = drivingExperience;
-        return this;
-    }
-
-    public Customer setReservations(List<Reservation> reservations) {
-        this.reservations = reservations;
         return this;
     }
 }

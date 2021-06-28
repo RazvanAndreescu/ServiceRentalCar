@@ -1,5 +1,6 @@
 package com.javaRemote.project.controllers;
 
+import com.javaRemote.project.database.dto.CustomerDto;
 import com.javaRemote.project.database.entities.Customer;
 import com.javaRemote.project.service.CustomerService;
 import org.springframework.web.bind.annotation.*;
@@ -17,32 +18,34 @@ public class CustomerController {
     }
 
     @GetMapping("/")
-    public List<Customer> printAllCustomers() {
+    public List<CustomerDto> getAllCustomers() {
         return customerService.getAllCustomers();
     }
 
     @PostMapping("/")
     @ResponseBody
-    public Customer createCustomer(@RequestBody Customer customer) {
-        return customerService.createCustomer(customer);
+    public Customer createCustomer(@RequestBody CustomerDto customerDto) {
+        return customerService.createCustomer(customerDto);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{customerId}")
     @ResponseBody
-    public boolean updateCustomer(@PathVariable int id, @RequestBody Customer customer){
-        if (customerService.getCustomerById(id) != null) {
-            customerService.updateCustomer(id, customer);
+    public boolean updateCustomer(@PathVariable int customerId, @RequestBody CustomerDto customerDto){
+        if (customerService.getCustomerById(customerId) != null) {
+            customerService.updateCustomer(customerId, customerDto);
             return true;
         }
+
         return false;
     }
 
-    @DeleteMapping("/{id}")
-    public boolean deleteCustomerById(@PathVariable int id) {
-        if (customerService.getCustomerById(id) != null) {
-            customerService.deleteCustomerById(id);
+    @DeleteMapping("/{customerId}")
+    public boolean deleteCustomerById(@PathVariable int customerId) {
+        if (customerService.getCustomerById(customerId) != null) {
+            customerService.deleteCustomerById(customerId);
             return true;
         }
+
         return false;
     }
 }

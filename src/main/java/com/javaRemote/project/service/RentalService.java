@@ -37,11 +37,12 @@ public class RentalService {
 
     public Rental updateRental(int rentalId, RentalDto rentalDto) {
         Rental rentalToUpdate = rentalRepository.getById(rentalId);
+        Rental inputRental = convertToRental(rentalDto);
 
-        rentalToUpdate.setNameRental(rentalDto.getNameRental() != null ? rentalDto.getNameRental() : rentalToUpdate.getNameRental())
-                .setContactAddress(rentalDto.getContactAddress() != null ? rentalDto.getContactAddress() : rentalToUpdate.getContactAddress())
-                .setInternetDomain(rentalDto.getInternetDomain() != null ? rentalDto.getInternetDomain() : rentalToUpdate.getInternetDomain())
-                .setOwner(rentalDto.getOwner() != null ? rentalDto.getOwner() : rentalToUpdate.getOwner());
+        rentalToUpdate.setNameRental(inputRental.getNameRental() != null ? inputRental.getNameRental() : rentalToUpdate.getNameRental())
+                .setContactAddress(inputRental.getContactAddress() != null ? inputRental.getContactAddress() : rentalToUpdate.getContactAddress())
+                .setInternetDomain(inputRental.getInternetDomain() != null ? inputRental.getInternetDomain() : rentalToUpdate.getInternetDomain())
+                .setOwner(inputRental.getOwner() != null ? inputRental.getOwner() : rentalToUpdate.getOwner());
 
         return rentalRepository.save(rentalToUpdate);
     }

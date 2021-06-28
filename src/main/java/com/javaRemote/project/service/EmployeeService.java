@@ -41,13 +41,12 @@ public class EmployeeService {
 
     public Employee updateEmployee(int employeeId, EmployeeDto employeeDto) {
         Employee employeeToUpdate = employeeRepository.getById(employeeId);
-        Optional<Branch> branchFromDto = branchRepository.findById(employeeDto.getBranchId());
-        Branch branchToUpdate = branchFromDto.orElse(null);
+        Employee inputEmployee = convertToEmployee(employeeDto);
 
         employeeToUpdate
-                .setNameEmployee(employeeDto.getNameEmployee() != null ? employeeDto.getNameEmployee() : employeeToUpdate.getNameEmployee())
-                .setRoleEmployee(employeeDto.getRoleEmployee() != null ? employeeDto.getRoleEmployee() : employeeToUpdate.getRoleEmployee())
-                .setBranch(branchToUpdate != null ? branchToUpdate : employeeToUpdate.getBranch());
+                .setNameEmployee(inputEmployee.getNameEmployee() != null ? inputEmployee.getNameEmployee() : employeeToUpdate.getNameEmployee())
+                .setRoleEmployee(inputEmployee.getRoleEmployee() != null ? inputEmployee.getRoleEmployee() : employeeToUpdate.getRoleEmployee())
+                .setBranch(inputEmployee.getBranch() != null ? inputEmployee.getBranch() : employeeToUpdate.getBranch());
 
         return employeeRepository.save(employeeToUpdate);
     }
@@ -58,8 +57,8 @@ public class EmployeeService {
 
     private Employee convertToEmployee(EmployeeDto employeeDto) {
         Employee employee = new Employee();
-
         Optional<Branch> branchFromDto = branchRepository.findById(employeeDto.getBranchId());
+
         employee.setEmployeeId(employeeDto.getEmployeeId())
                 .setNameEmployee(employeeDto.getNameEmployee())
                 .setRoleEmployee(employeeDto.getRoleEmployee())

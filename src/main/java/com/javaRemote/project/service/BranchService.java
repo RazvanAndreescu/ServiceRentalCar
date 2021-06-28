@@ -41,11 +41,10 @@ public class BranchService {
 
     public Branch updateBranchAddress(int branchId, BranchDto branchDto) {
         Branch branchToUpdate = branchRepository.getById(branchId);
-        Optional<Rental> rentalFromDto = rentalRepository.findById(branchDto.getRentalId());
-        Rental rentalToUpdate = rentalFromDto.orElse(null);
+        Branch inputBranch = convertToBranch(branchDto);
 
-        branchToUpdate.setAddress(branchDto.getAddress() != null ? branchDto.getAddress() : branchToUpdate.getAddress())
-                .setRental(rentalToUpdate != null ? rentalToUpdate : branchToUpdate.getRental());
+        branchToUpdate.setAddress(inputBranch.getAddress() != null ? inputBranch.getAddress() : branchToUpdate.getAddress())
+                .setRental(inputBranch.getRental() != null ? inputBranch.getRental() : branchToUpdate.getRental());
 
         return branchRepository.save(branchToUpdate);
     }
@@ -56,8 +55,8 @@ public class BranchService {
 
     private Branch convertToBranch(BranchDto branchDto) {
         Branch branch = new Branch();
-
         Optional<Rental> rentalFromDto = rentalRepository.findById(branchDto.getRentalId());
+
         branch.setBranchId(branchDto.getBranchId())
                 .setAddress(branchDto.getAddress())
                 .setRental(rentalFromDto.orElse(null));
