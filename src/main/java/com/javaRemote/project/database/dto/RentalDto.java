@@ -1,10 +1,12 @@
 package com.javaRemote.project.database.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 public class RentalDto implements Serializable {
@@ -13,26 +15,6 @@ public class RentalDto implements Serializable {
     private String internetDomain;
     private String contactAddress;
     private String owner;
-
-    public Integer getRentalId() {
-        return rentalId;
-    }
-
-    public String getNameRental() {
-        return nameRental;
-    }
-
-    public String getInternetDomain() {
-        return internetDomain;
-    }
-
-    public String getContactAddress() {
-        return contactAddress;
-    }
-
-    public String getOwner() {
-        return owner;
-    }
 
     public RentalDto setRentalId(int rentalId) {
         this.rentalId = rentalId;

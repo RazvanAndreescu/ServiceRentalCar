@@ -1,28 +1,18 @@
 package com.javaRemote.project.database.dto;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class BranchDto implements Serializable {
     private Integer branchId;
     private String address;
     private Integer rentalId;
-
-    public Integer getBranchId() {
-        return branchId;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public Integer getRentalId() {
-        return rentalId;
-    }
 
     public BranchDto setBranchId(Integer branchId) {
         this.branchId = branchId;

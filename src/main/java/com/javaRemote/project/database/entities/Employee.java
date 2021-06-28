@@ -13,7 +13,7 @@ public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employeeid")
-    private int employeeId;
+    private Integer employeeId;
 
     @Column(name = "nameemployee")
     private String nameEmployee;
@@ -24,6 +24,11 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name="branchid")
     private Branch branch;
+
+    public Employee setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+        return this;
+    }
 
     public Employee setNameEmployee(String nameEmployee) {
         this.nameEmployee = nameEmployee;

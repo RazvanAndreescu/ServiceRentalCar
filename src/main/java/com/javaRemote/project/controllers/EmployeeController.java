@@ -1,5 +1,6 @@
 package com.javaRemote.project.controllers;
 
+import com.javaRemote.project.database.dto.EmployeeDto;
 import com.javaRemote.project.database.entities.Employee;
 import com.javaRemote.project.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
@@ -17,33 +18,35 @@ public class EmployeeController {
     }
 
     @GetMapping("/")
-    public List<Employee> getAllEmployees(){
+    public List<EmployeeDto> getAllEmployees(){
         return employeeService.getAllEmployees();
     }
 
     @PostMapping("/")
     @ResponseBody
-    public Employee createEmployee(@RequestBody Employee employee){
-        return employeeService.create(employee);
+    public Employee createEmployee(@RequestBody EmployeeDto employeeDto){
+        return employeeService.createEmployee(employeeDto);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{employeeId}")
     @ResponseBody
-    public boolean updateEmployee(@PathVariable int id, @RequestBody Employee employee){
-        if (employeeService.getEmployeeById(id) != null) {
-            employeeService.updateEmployee(id, employee);
+    public boolean updateEmployee(@PathVariable int employeeId, @RequestBody EmployeeDto employeeDto){
+        if (employeeService.getEmployeeById(employeeId) != null) {
+            employeeService.updateEmployee(employeeId, employeeDto);
             return true;
         }
+
         return false;
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{employeeId}")
     @ResponseBody
-    public boolean deleteEmployee(@PathVariable int id){
-        if (employeeService.getEmployeeById(id) != null) {
-            employeeService.deleteEmployeeById(id);
+    public boolean deleteEmployee(@PathVariable int employeeId){
+        if (employeeService.getEmployeeById(employeeId) != null) {
+            employeeService.deleteEmployeeById(employeeId);
             return true;
         }
+
         return false;
     }
 }
