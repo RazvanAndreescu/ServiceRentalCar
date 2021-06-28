@@ -10,7 +10,8 @@ import java.sql.Date;
 @Proxy(lazy = false)
 @Table(name = "reservation")
 public class Reservation {
-
+    // TODO: 6/28/2021 Verify Rental table >>double value 
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservationid")
