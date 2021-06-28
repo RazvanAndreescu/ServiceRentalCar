@@ -49,7 +49,6 @@ public class BranchController {
                 exception.printStackTrace();
             }
         }
-
         return false;
     }
 }
