@@ -1,12 +1,9 @@
 package com.javaRemote.project.database.dto;
 
-import lombok.AllArgsConstructor;
+
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class CustomerDto {
     private Integer customerId;
     private String nameCustomer;

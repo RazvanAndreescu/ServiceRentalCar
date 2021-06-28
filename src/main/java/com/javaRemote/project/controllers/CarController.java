@@ -1,6 +1,7 @@
 package com.javaRemote.project.controllers;
 
 
+import com.javaRemote.project.database.dto.CarDto;
 import com.javaRemote.project.database.entities.Car;
 import com.javaRemote.project.service.CarService;
 import org.springframework.web.bind.annotation.*;
@@ -13,38 +14,39 @@ public class CarController {
 
     private CarService carService;
 
-    public CarController(CarService carService){
+    public CarController(CarService carService) {
         this.carService = carService;
     }
 
     @GetMapping("/")
-    public List<Car> printAllCars(){
+    public List<CarDto> printAllCars() {
         return carService.getAllCars();
     }
 
     @PostMapping("/")
     @ResponseBody
-    public Car createCar(@RequestBody Car car){
-        carService.create(car);
-        return car;
+    public Car createCar(@RequestBody CarDto carDto) {
+        return carService.create(carDto);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{carId}")
     @ResponseBody
-    public boolean updateCar(@PathVariable int id, @RequestBody Car car){
-        if(carService.getCarByCarId(id) != null){
-            carService.updateCar(id,car);
+    public boolean updateCar(@PathVariable int carId, @RequestBody CarDto carDto) {
+        if (carService.getCarByCarId(carId) != null) {
+            carService.updateCar(carId, carDto);
             return true;
         }
+
         return false;
     }
 
-    @DeleteMapping("/{id}")
-    public boolean deleteCarById(@PathVariable int id){
-        if(carService.getCarByCarId(id) != null){
-            carService.deleteCarById(id);
+    @DeleteMapping("/{carId}")
+    public boolean deleteCarById(@PathVariable int carId) {
+        if (carService.getCarByCarId(carId) != null) {
+            carService.deleteCarById(carId);
             return true;
         }
+
         return false;
     }
 }

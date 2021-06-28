@@ -1,15 +1,10 @@
 package com.javaRemote.project.database.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-import java.io.Serializable;
+import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
-public class RentalDto implements Serializable {
+public class RentalDto {
     private Integer rentalId;
     private String nameRental;
     private String internetDomain;

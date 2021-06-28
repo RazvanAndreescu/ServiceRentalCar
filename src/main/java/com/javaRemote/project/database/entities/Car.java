@@ -15,7 +15,7 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "carid")
-    private int carId;
+    private Integer carId;
 
     @Column(name = "model")
     private String model;
@@ -33,7 +33,7 @@ public class Car {
     private String status;
 
     @Column(name = "price")
-    private int price;
+    private Integer price;
 
     @ManyToOne
     @JoinColumn(name="branchid")
@@ -43,6 +43,10 @@ public class Car {
     @JsonIgnore
     private List<Reservation> reservations;
 
+    public Car setCarId(Integer carId) {
+        this.carId = carId;
+        return this;
+    }
 
     public Car setModel(String model) {
         this.model = model;
@@ -69,7 +73,12 @@ public class Car {
         return this;
     }
 
-    public Car setPrice(int price) {
+    public Car setBranch(Branch branch) {
+        this.branch = branch;
+        return this;
+    }
+
+    public Car setPrice(Integer price) {
         this.price = price;
         return this;
     }

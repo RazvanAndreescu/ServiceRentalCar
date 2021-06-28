@@ -55,11 +55,10 @@ public class BranchService {
 
     private Branch convertToBranch(BranchDto branchDto) {
         Branch branch = new Branch();
-        Optional<Rental> rentalFromDto = rentalRepository.findById(branchDto.getRentalId());
 
         branch.setBranchId(branchDto.getBranchId())
                 .setAddress(branchDto.getAddress())
-                .setRental(rentalFromDto.orElse(null));
+                .setRental(getRentalFromDto(branchDto));
 
         return branch;
     }
@@ -73,4 +72,17 @@ public class BranchService {
 
         return branchDto;
     }
+
+    private Rental getRentalFromDto(BranchDto branchDto) {
+        Rental rental = null;
+        try {
+            Optional<Rental> rentalFromDto = rentalRepository.findById(branchDto.getRentalId());
+            rental = rentalFromDto.orElse(null);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+        return rental;
+    }
 }
+
+
