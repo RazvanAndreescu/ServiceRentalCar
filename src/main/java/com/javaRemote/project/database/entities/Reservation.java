@@ -1,20 +1,24 @@
 package com.javaRemote.project.database.entities;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
+
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
 @Getter
 @Proxy(lazy = false)
 @Table(name = "reservation")
+@NoArgsConstructor
 public class Reservation {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reservationid")
-    private int reservationId;
+    private Integer reservationId;
 
     @Column(name = "startdate")
     private Date startDate;
@@ -23,19 +27,34 @@ public class Reservation {
     private Date endDate;
 
     @Column(name = "price")
-    private int price;
+    private Integer price;
 
     @ManyToOne
-    @JoinColumn(name="branchid")
+    @JoinColumn(name = "branchid")
     private Branch branch;
 
     @ManyToOne
-    @JoinColumn(name="customerid")
+    @JoinColumn(name = "customerid")
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "carid")
     private Car car;
+
+    public Reservation(Reservation reservation) {
+        this.reservationId = reservation.getReservationId();
+        this.startDate = reservation.getStartDate();
+        this.endDate = reservation.getEndDate();
+        this.price = reservation.getPrice();
+        this.branch = reservation.getBranch();
+        this.customer = reservation.getCustomer();
+        this.car = reservation.getCar();
+    }
+
+    public Reservation setReservationId(Integer reservationId) {
+        this.reservationId = reservationId;
+        return this;
+    }
 
     public Reservation setStartDate(Date startDate) {
         this.startDate = startDate;
@@ -47,7 +66,7 @@ public class Reservation {
         return this;
     }
 
-    public Reservation setPrice(int price) {
+    public Reservation setPrice(Integer price) {
         this.price = price;
         return this;
     }
@@ -65,5 +84,24 @@ public class Reservation {
     public Reservation setCar(Car car) {
         this.car = car;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Reservation that = (Reservation) o;
+        return Objects.equals(reservationId, that.reservationId) &&
+                Objects.equals(startDate, that.startDate) &&
+                Objects.equals(endDate, that.endDate) &&
+                Objects.equals(price, that.price) &&
+                Objects.equals(branch, that.branch) &&
+                Objects.equals(customer, that.customer) &&
+                Objects.equals(car, that.car);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(reservationId, startDate, endDate, price, branch, customer, car);
     }
 }

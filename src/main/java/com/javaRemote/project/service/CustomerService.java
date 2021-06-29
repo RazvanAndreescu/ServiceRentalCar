@@ -1,7 +1,6 @@
 package com.javaRemote.project.service;
 
 import com.javaRemote.project.database.dto.CustomerDto;
-import com.javaRemote.project.database.dto.RentalDto;
 import com.javaRemote.project.database.entities.Customer;
 import com.javaRemote.project.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -19,14 +18,14 @@ public class CustomerService {
     }
 
     public Customer createCustomer(CustomerDto customerDto) {
-        return customerRepository.save(convertToCustomer(customerDto));
+        return customerRepository.save(convertCustomerDtoToCustomer(customerDto));
     }
 
     public List<CustomerDto> getAllCustomers() {
         List<CustomerDto> customerDtoList = new ArrayList<>();
 
         for (Customer customer : customerRepository.findAll()) {
-            customerDtoList.add(convertToCustomerDto(customer));
+            customerDtoList.add(convertCustomerToCustomerDto(customer));
         }
 
         return customerDtoList;
@@ -38,7 +37,7 @@ public class CustomerService {
 
     public Customer updateCustomer(int customerId, CustomerDto customerDto) {
         Customer customerToUpdate = customerRepository.getById(customerId);
-        Customer inputCustomer = convertToCustomer(customerDto);
+        Customer inputCustomer = convertCustomerDtoToCustomer(customerDto);
 
         customerToUpdate
                 .setNameCustomer(inputCustomer.getNameCustomer() != null ? inputCustomer.getNameCustomer() : customerToUpdate.getNameCustomer())
@@ -52,7 +51,7 @@ public class CustomerService {
         customerRepository.deleteById(customerId);
     }
 
-    private Customer convertToCustomer(CustomerDto customerDto) {
+    private Customer convertCustomerDtoToCustomer(CustomerDto customerDto) {
         Customer customer = new Customer();
 
         validateDrivingExperience(customerDto);
@@ -65,7 +64,7 @@ public class CustomerService {
         return customer;
     }
 
-    private CustomerDto convertToCustomerDto(Customer customer) {
+    private CustomerDto convertCustomerToCustomerDto(Customer customer) {
         CustomerDto customerDto = new CustomerDto();
 
         customerDto.setCustomerId(customer.getCustomerId())

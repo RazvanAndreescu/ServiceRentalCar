@@ -18,26 +18,26 @@ public class RentalService {
     }
 
     public Rental createRental(RentalDto rentalDto) {
-        return rentalRepository.save(convertToRental(rentalDto));
+        return rentalRepository.save(convertRentalDtoToRental(rentalDto));
     }
 
     public List<RentalDto> getAllRentals() {
         List<RentalDto> rentalDtoList = new ArrayList<>();
 
         for (Rental rental : rentalRepository.findAll()) {
-            rentalDtoList.add(convertToRentalDto(rental));
+            rentalDtoList.add(convertRentalToRentalDto(rental));
         }
 
         return rentalDtoList;
     }
 
-    public Rental getRentalBy(int rentalId) {
+    public Rental getRentalById(int rentalId) {
         return rentalRepository.getById(rentalId);
     }
 
     public Rental updateRental(int rentalId, RentalDto rentalDto) {
         Rental rentalToUpdate = rentalRepository.getById(rentalId);
-        Rental inputRental = convertToRental(rentalDto);
+        Rental inputRental = convertRentalDtoToRental(rentalDto);
 
         rentalToUpdate.setNameRental(inputRental.getNameRental() != null ? inputRental.getNameRental() : rentalToUpdate.getNameRental())
                 .setContactAddress(inputRental.getContactAddress() != null ? inputRental.getContactAddress() : rentalToUpdate.getContactAddress())
@@ -51,7 +51,7 @@ public class RentalService {
             rentalRepository.deleteById(rentalId);
     }
 
-    private Rental convertToRental(RentalDto rentalDto) {
+    private Rental convertRentalDtoToRental(RentalDto rentalDto) {
         Rental rental = new Rental();
 
         rental.setRentalId(rentalDto.getRentalId())
@@ -63,7 +63,7 @@ public class RentalService {
         return rental;
     }
 
-    private RentalDto convertToRentalDto(Rental rental) {
+    private RentalDto convertRentalToRentalDto(Rental rental) {
         RentalDto rentalDto = new RentalDto();
 
         rentalDto.setRentalId(rental.getRentalId())

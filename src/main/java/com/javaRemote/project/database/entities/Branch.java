@@ -41,7 +41,7 @@ public class Branch implements Serializable {
     @JsonIgnore
     private List<Reservation> reservations;
 
-    public Branch(Branch branch){
+    public Branch(Branch branch) {
         this.branchId = branch.getBranchId();
         this.address = branch.getAddress();
         this.rental = branch.getRental();
@@ -67,7 +67,9 @@ public class Branch implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Branch branch = (Branch) o;
-        return Objects.equals(branchId, branch.branchId) && Objects.equals(address, branch.address) && Objects.equals(rental, branch.rental);
+        return Objects.equals(branchId, branch.branchId) &&
+                Objects.equals(address, branch.address) &&
+                Objects.equals(rental, branch.rental);
     }
 
     @Override

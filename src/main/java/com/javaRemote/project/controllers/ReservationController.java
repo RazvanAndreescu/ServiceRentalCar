@@ -17,31 +17,33 @@ public class ReservationController {
     }
 
     @GetMapping("/")
-    public List<Reservation> printAllCustomers(){
+    public List<Reservation> printAllCustomers() {
         return reservationService.getAllReservation();
     }
 
     @PostMapping("/")
     @ResponseBody
-    public Reservation crateReservation(@RequestBody Reservation reservation){
+    public Reservation crateReservation(@RequestBody Reservation reservation) {
         return reservationService.create(reservation);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/{reservationId}")
     @ResponseBody
-    public boolean updateReservation(@PathVariable int id, @RequestBody Reservation reservation){
-        if(reservationService.getReservationById(id) != null){
-            reservationService.updateReservation(id, reservation);
-            return true;
+    public boolean updateReservation(@PathVariable int reservationId, @RequestBody Reservation reservationDto) {
+        Reservation reservationBeforeUpdate = new Reservation(reservationService.getReservationById(reservationId));
+
+        if (reservationService.getReservationById(reservationId) == null) {
+            return false;
         }
-        return false;
+
+        return !reservationService.updateReservation(reservationId, reservationDto).equals(reservationBeforeUpdate);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/{reservationId}")
     @ResponseBody
-    public boolean deleteReservation(@PathVariable int id){
-        if(reservationService.getReservationById(id) != null){
-            reservationService.deleteReservationById(id);
+    public boolean deleteReservation(@PathVariable int reservationId) {
+        if (reservationService.getReservationById(reservationId) != null) {
+            reservationService.deleteReservationById(reservationId);
             return true;
         }
         return false;

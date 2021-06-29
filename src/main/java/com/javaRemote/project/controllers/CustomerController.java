@@ -30,13 +30,14 @@ public class CustomerController {
 
     @PutMapping("/{customerId}")
     @ResponseBody
-    public boolean updateCustomer(@PathVariable int customerId, @RequestBody CustomerDto customerDto){
-        if (customerService.getCustomerById(customerId) != null) {
-            customerService.updateCustomer(customerId, customerDto);
-            return true;
+    public boolean updateCustomer(@PathVariable int customerId, @RequestBody CustomerDto customerDto) {
+        Customer customerBeforeUpdate = new Customer(customerService.getCustomerById(customerId));
+
+        if (customerService.getCustomerById(customerId) == null) {
+            return false;
         }
 
-        return false;
+        return !customerService.updateCustomer(customerId, customerDto).equals(customerBeforeUpdate);
     }
 
     @DeleteMapping("/{customerId}")

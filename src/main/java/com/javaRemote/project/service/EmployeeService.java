@@ -22,14 +22,14 @@ public class EmployeeService {
     }
 
     public Employee createEmployee(EmployeeDto employeeDto) {
-        return employeeRepository.save(convertToEmployee(employeeDto));
+        return employeeRepository.save(convertEmployeeDtoToEmployee(employeeDto));
     }
 
     public List<EmployeeDto> getAllEmployees() {
         List<EmployeeDto> employeeDtoList = new ArrayList<>();
 
         for (Employee employee : employeeRepository.findAll()) {
-            employeeDtoList.add(convertToEmployeeDto(employee));
+            employeeDtoList.add(convertEmployeeToEmployeeDto(employee));
         }
 
         return employeeDtoList;
@@ -41,7 +41,7 @@ public class EmployeeService {
 
     public Employee updateEmployee(int employeeId, EmployeeDto employeeDto) {
         Employee employeeToUpdate = employeeRepository.getById(employeeId);
-        Employee inputEmployee = convertToEmployee(employeeDto);
+        Employee inputEmployee = convertEmployeeDtoToEmployee(employeeDto);
 
         employeeToUpdate
                 .setNameEmployee(inputEmployee.getNameEmployee() != null ? inputEmployee.getNameEmployee() : employeeToUpdate.getNameEmployee())
@@ -55,19 +55,18 @@ public class EmployeeService {
         employeeRepository.deleteById(employeeId);
     }
 
-    private Employee convertToEmployee(EmployeeDto employeeDto) {
+    private Employee convertEmployeeDtoToEmployee(EmployeeDto employeeDto) {
         Employee employee = new Employee();
-        Optional<Branch> branchFromDto = branchRepository.findById(employeeDto.getBranchId());
 
         employee.setEmployeeId(employeeDto.getEmployeeId())
                 .setNameEmployee(employeeDto.getNameEmployee())
                 .setRoleEmployee(employeeDto.getRoleEmployee())
-                .setBranch(branchFromDto.orElse(null));
+                .setBranch(getBranchFromEmployeeDto(employeeDto));
 
         return employee;
     }
 
-    private EmployeeDto convertToEmployeeDto(Employee employee) {
+    private EmployeeDto convertEmployeeToEmployeeDto(Employee employee) {
         EmployeeDto employeeDto = new EmployeeDto();
 
         employeeDto.setEmployeeId(employee.getEmployeeId())
@@ -76,5 +75,18 @@ public class EmployeeService {
                 .setBranchId(employee.getBranch() != null ? employee.getBranch().getBranchId() : 0);
 
         return employeeDto;
+    }
+
+    private Branch getBranchFromEmployeeDto(EmployeeDto employeeDto) {
+        Branch branch = null;
+
+        try {
+            Optional<Branch> branchFromDto = branchRepository.findById(employeeDto.getBranchId());
+            branch = branchFromDto.orElse(null);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+
+        return branch;
     }
 }

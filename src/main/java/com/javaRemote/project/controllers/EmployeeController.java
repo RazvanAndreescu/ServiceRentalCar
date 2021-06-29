@@ -11,37 +11,38 @@ import java.util.List;
 @RequestMapping("/employees")
 public class EmployeeController {
 
-   private EmployeeService employeeService;
+    private EmployeeService employeeService;
 
     public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
     @GetMapping("/")
-    public List<EmployeeDto> printAllEmployees(){
+    public List<EmployeeDto> printAllEmployees() {
         return employeeService.getAllEmployees();
     }
 
     @PostMapping("/")
     @ResponseBody
-    public Employee createEmployee(@RequestBody EmployeeDto employeeDto){
+    public Employee createEmployee(@RequestBody EmployeeDto employeeDto) {
         return employeeService.createEmployee(employeeDto);
     }
 
     @PutMapping("/{employeeId}")
     @ResponseBody
-    public boolean updateEmployee(@PathVariable int employeeId, @RequestBody EmployeeDto employeeDto){
-        if (employeeService.getEmployeeById(employeeId) != null) {
-            employeeService.updateEmployee(employeeId, employeeDto);
-            return true;
+    public boolean updateEmployee(@PathVariable int employeeId, @RequestBody EmployeeDto employeeDto) {
+        Employee employeeBeforeUpdate = new Employee(employeeService.getEmployeeById(employeeId));
+
+        if (employeeService.getEmployeeById(employeeId) == null) {
+            return false;
         }
 
-        return false;
+        return !employeeService.updateEmployee(employeeId, employeeDto).equals(employeeBeforeUpdate);
     }
 
     @DeleteMapping("/{employeeId}")
     @ResponseBody
-    public boolean deleteEmployee(@PathVariable int employeeId){
+    public boolean deleteEmployee(@PathVariable int employeeId) {
         if (employeeService.getEmployeeById(employeeId) != null) {
             employeeService.deleteEmployeeById(employeeId);
             return true;

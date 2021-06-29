@@ -22,14 +22,14 @@ public class BranchService {
     }
 
     public Branch createBranch(BranchDto branchDto) {
-        return branchRepository.save(convertToBranch(branchDto));
+        return branchRepository.save(convertBranchDtoToBranch(branchDto));
     }
 
     public List<BranchDto> getAllBranches() {
         List<BranchDto> branchDtoList = new ArrayList<>();
 
         for (Branch branch : branchRepository.findAll()) {
-            branchDtoList.add(convertToBranchDto(branch));
+            branchDtoList.add(convertBranchToBranchDto(branch));
         }
 
         return branchDtoList;
@@ -41,7 +41,7 @@ public class BranchService {
 
     public Branch updateBranch(int branchId, BranchDto branchDto) {
         Branch branchToUpdate = branchRepository.getById(branchId);
-        Branch inputBranch = convertToBranch(branchDto);
+        Branch inputBranch = convertBranchDtoToBranch(branchDto);
 
         branchToUpdate.setAddress(inputBranch.getAddress() != null ? inputBranch.getAddress() : branchToUpdate.getAddress())
                 .setRental(inputBranch.getRental() != null ? inputBranch.getRental() : branchToUpdate.getRental());
@@ -53,7 +53,7 @@ public class BranchService {
         branchRepository.deleteById(branchId);
     }
 
-    private Branch convertToBranch(BranchDto branchDto) {
+    private Branch convertBranchDtoToBranch(BranchDto branchDto) {
         Branch branch = new Branch();
 
         branch.setBranchId(branchDto.getBranchId())
@@ -63,7 +63,7 @@ public class BranchService {
         return branch;
     }
 
-    private BranchDto convertToBranchDto(Branch branch) {
+    private BranchDto convertBranchToBranchDto(Branch branch) {
         BranchDto branchDto = new BranchDto();
 
         branchDto.setBranchId(branch.getBranchId())
@@ -75,12 +75,14 @@ public class BranchService {
 
     private Rental getRentalFromDto(BranchDto branchDto) {
         Rental rental = null;
+
         try {
             Optional<Rental> rentalFromDto = rentalRepository.findById(branchDto.getRentalId());
             rental = rentalFromDto.orElse(null);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
+
         return rental;
     }
 }

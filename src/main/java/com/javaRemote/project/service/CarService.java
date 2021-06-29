@@ -23,14 +23,14 @@ public class CarService {
     }
 
     public Car create(CarDto carDto) {
-        return carRepository.save(convertToCar(carDto));
+        return carRepository.save(convertCarDtoToCar(carDto));
     }
 
     public List<CarDto> getAllCars() {
         List<CarDto> carDtoList = new ArrayList<>();
 
-        for (Car car : carRepository.findAll()){
-            carDtoList.add(convertToCarDto(car));
+        for (Car car : carRepository.findAll()) {
+            carDtoList.add(convertCarToCarDto(car));
         }
 
         return carDtoList;
@@ -43,7 +43,7 @@ public class CarService {
 
     public Car updateCar(int carId, CarDto carDto) {
         Car carToUpdate = carRepository.getById(carId);
-        Car inputCar = convertToCar(carDto);
+        Car inputCar = convertCarDtoToCar(carDto);
 
         carToUpdate.setModel(inputCar.getModel() != null ? inputCar.getModel() : carToUpdate.getModel())
                 .setTransmission(inputCar.getTransmission() != null ? inputCar.getTransmission() : carToUpdate.getTransmission())
@@ -59,9 +59,8 @@ public class CarService {
         carRepository.deleteById(carId);
     }
 
-    private Car convertToCar(CarDto carDto) {
+    private Car convertCarDtoToCar(CarDto carDto) {
         Car car = new Car();
-        Optional<Branch> branchFromDto = branchRepository.findById(carDto.getBranchId());
 
         car.setCarId(carDto.getCarId())
                 .setModel(carDto.getModel())
@@ -70,12 +69,12 @@ public class CarService {
                 .setYearCar(carDto.getYearCar())
                 .setStatus(carDto.getStatus())
                 .setPrice(carDto.getPrice())
-                .setBranch(branchFromDto.orElse(null));
+                .setBranch(getBranchFromCarDto(carDto));
 
         return car;
     }
 
-    private CarDto convertToCarDto(Car car) {
+    private CarDto convertCarToCarDto(Car car) {
         CarDto carDto = new CarDto();
 
         carDto.setCarId(car.getCarId())
@@ -88,5 +87,18 @@ public class CarService {
                 .setBranchId(car.getBranch() != null ? car.getBranch().getBranchId() : 0);
 
         return carDto;
+    }
+
+    private Branch getBranchFromCarDto(CarDto carDto) {
+        Branch branch = null;
+
+        try {
+            Optional<Branch> branchFromDto = branchRepository.findById(carDto.getBranchId());
+            branch = branchFromDto.orElse(null);
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        }
+
+        return branch;
     }
 }

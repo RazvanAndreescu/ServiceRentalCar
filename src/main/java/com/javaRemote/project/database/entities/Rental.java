@@ -2,15 +2,18 @@ package com.javaRemote.project.database.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
-import java.io.Serializable;
+
 import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Getter
 @Table(name = "rental")
-public class Rental implements Serializable {
+@NoArgsConstructor
+public class Rental {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +35,14 @@ public class Rental implements Serializable {
     @OneToMany(mappedBy = "rental")
     @JsonIgnore
     private List<Branch> branches;
+
+    public Rental(Rental rental) {
+        this.rentalId = rental.getRentalId();
+        this.nameRental = rental.getNameRental();
+        this.internetDomain = rental.getInternetDomain();
+        this.contactAddress = rental.getContactAddress();
+        this.owner = rental.getOwner();
+    }
 
     public Rental setRentalId(Integer rentalId) {
         this.rentalId = rentalId;
@@ -63,7 +74,11 @@ public class Rental implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Rental rental = (Rental) o;
-        return Objects.equals(rentalId, rental.rentalId) && Objects.equals(nameRental, rental.nameRental) && Objects.equals(internetDomain, rental.internetDomain) && Objects.equals(contactAddress, rental.contactAddress) && Objects.equals(owner, rental.owner);
+        return Objects.equals(rentalId, rental.rentalId) &&
+                Objects.equals(nameRental, rental.nameRental) &&
+                Objects.equals(internetDomain, rental.internetDomain) &&
+                Objects.equals(contactAddress, rental.contactAddress) &&
+                Objects.equals(owner, rental.owner);
     }
 
     @Override

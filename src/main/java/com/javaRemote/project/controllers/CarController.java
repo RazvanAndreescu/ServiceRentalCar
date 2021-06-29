@@ -32,12 +32,13 @@ public class CarController {
     @PutMapping("/{carId}")
     @ResponseBody
     public boolean updateCar(@PathVariable int carId, @RequestBody CarDto carDto) {
-        if (carService.getCarByCarId(carId) != null) {
-            carService.updateCar(carId, carDto);
-            return true;
+        Car carBeforeUpdate = new Car(carService.getCarByCarId(carId));
+
+        if (carService.getCarByCarId(carId) == null) {
+            return false;
         }
 
-        return false;
+        return !carService.updateCar(carId, carDto).equals(carBeforeUpdate);
     }
 
     @DeleteMapping("/{carId}")

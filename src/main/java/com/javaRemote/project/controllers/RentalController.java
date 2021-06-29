@@ -30,17 +30,18 @@ public class RentalController {
     @PutMapping("/{rentalId}")
     @ResponseBody
     public boolean updateRental(@PathVariable Integer rentalId, @RequestBody RentalDto rentalDto) {
-        if (rentalService.getRentalBy(rentalId) != null) {
-            rentalService.updateRental(rentalId, rentalDto);
-            return true;
+        Rental rentalBeforeUpdate = new Rental(rentalService.getRentalById(rentalId));
+
+        if (rentalService.getRentalById(rentalId) == null) {
+            return false;
         }
 
-        return false;
+        return !rentalService.updateRental(rentalId, rentalDto).equals(rentalBeforeUpdate);
     }
 
     @DeleteMapping("/{rentalId}")
     public boolean deleteRental(@PathVariable Integer rentalId) {
-        if (rentalService.getRentalBy(rentalId) != null) {
+        if (rentalService.getRentalById(rentalId) != null) {
             try {
                 rentalService.deleteRentalById(rentalId);
                 return true;
