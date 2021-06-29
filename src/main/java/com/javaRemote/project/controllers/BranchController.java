@@ -31,12 +31,13 @@ public class BranchController {
     @PutMapping("/{branchId}")
     @ResponseBody
     public boolean updateBranch(@PathVariable Integer branchId, @RequestBody BranchDto branchDto) {
-        if (branchService.getBranchById(branchId) != null) {
-            branchService.updateBranchAddress(branchId, branchDto);
-            return true;
+        Branch branchBeforeUpdate = new Branch(branchService.getBranchById(branchId));
+
+        if (branchService.getBranchById(branchId) == null) {
+            return false;
         }
 
-        return false;
+        return !branchService.updateBranch(branchId, branchDto).equals(branchBeforeUpdate);
     }
 
     @DeleteMapping("/{branchId}")
@@ -45,7 +46,7 @@ public class BranchController {
             try {
                 branchService.deleteBranchById(branchId);
                 return true;
-            } catch (Exception exception){
+            } catch (Exception exception) {
                 exception.printStackTrace();
             }
         }

@@ -39,7 +39,7 @@ public class BranchService {
         return branchRepository.getById(branchId);
     }
 
-    public Branch updateBranchAddress(int branchId, BranchDto branchDto) {
+    public Branch updateBranch(int branchId, BranchDto branchDto) {
         Branch branchToUpdate = branchRepository.getById(branchId);
         Branch inputBranch = convertToBranch(branchDto);
 

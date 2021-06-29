@@ -2,16 +2,19 @@ package com.javaRemote.project.database.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Proxy;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Getter
 @Proxy(lazy = false)
 @Table(name = "branch")
+@NoArgsConstructor
 public class Branch implements Serializable {
 
     @Id
@@ -38,6 +41,12 @@ public class Branch implements Serializable {
     @JsonIgnore
     private List<Reservation> reservations;
 
+    public Branch(Branch branch){
+        this.branchId = branch.getBranchId();
+        this.address = branch.getAddress();
+        this.rental = branch.getRental();
+    }
+
     public Branch setBranchId(Integer branchId) {
         this.branchId = branchId;
         return this;
@@ -51,5 +60,18 @@ public class Branch implements Serializable {
     public Branch setRental(Rental rental) {
         this.rental = rental;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Branch branch = (Branch) o;
+        return Objects.equals(branchId, branch.branchId) && Objects.equals(address, branch.address) && Objects.equals(rental, branch.rental);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(branchId, address, rental);
     }
 }

@@ -50,7 +50,7 @@ public class CarService {
                 .setBodyType(inputCar.getBodyType() != null ? inputCar.getBodyType() : carToUpdate.getBodyType())
                 .setYearCar(inputCar.getYearCar() != null ? inputCar.getYearCar() : carToUpdate.getYearCar())
                 .setStatus(inputCar.getStatus() != null ? inputCar.getStatus() : carToUpdate.getStatus())
-                .setPrice(inputCar.getPrice() != 0 ? inputCar.getPrice() : carToUpdate.getPrice());
+                .setPrice(inputCar.getPrice() != null ? inputCar.getPrice() : carToUpdate.getPrice());
 
         return carRepository.save(carToUpdate);
     }
