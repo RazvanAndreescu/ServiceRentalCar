@@ -5,6 +5,7 @@ import com.javaRemote.project.database.entities.Rental;
 import com.javaRemote.project.repository.RentalRepository;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +18,8 @@ public class RentalService {
         this.rentalRepository = rentalRepository;
     }
 
-    public Rental createRental(RentalDto rentalDto) {
-        return rentalRepository.save(convertRentalDtoToRental(rentalDto));
+    public Rental createRental(Rental rental) {
+            return rentalRepository.save(rental);
     }
 
     public List<RentalDto> getAllRentals() {

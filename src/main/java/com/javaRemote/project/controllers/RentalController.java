@@ -5,6 +5,7 @@ import com.javaRemote.project.database.entities.Rental;
 import com.javaRemote.project.service.RentalService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,9 +23,8 @@ public class RentalController {
     }
 
     @PostMapping("/")
-    @ResponseBody
-    public Rental createRental(@RequestBody RentalDto rentalDto) {
-        return rentalService.createRental(rentalDto);
+    public Rental createRental(@RequestBody @Valid Rental rental) {
+        return rentalService.createRental(rental);
     }
 
     @PutMapping("/{rentalId}")

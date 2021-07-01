@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import java.util.List;
 import java.util.Objects;
@@ -12,6 +14,7 @@ import java.util.Objects;
 @Entity
 @Getter
 @Table(name = "rental")
+@Valid
 @NoArgsConstructor
 public class Rental {
 
@@ -21,9 +24,11 @@ public class Rental {
     private Integer rentalId;
 
     @Column(name = "namerental")
+    @NotNull(message = "nameRental is required")
     private String nameRental;
 
     @Column(name = "internetdomain")
+    @NotNull(message = "internetDomain is required")
     private String internetDomain;
 
     @Column(name = "contactaddress")
