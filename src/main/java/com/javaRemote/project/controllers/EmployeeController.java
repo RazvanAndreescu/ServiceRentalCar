@@ -5,10 +5,11 @@ import com.javaRemote.project.database.entities.Employee;
 import com.javaRemote.project.service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/employees")
+@RequestMapping("/employee")
 public class EmployeeController {
 
     private EmployeeService employeeService;
@@ -24,7 +25,7 @@ public class EmployeeController {
 
     @PostMapping("/")
     @ResponseBody
-    public Employee createEmployee(@RequestBody EmployeeDto employeeDto) {
+    public Employee createEmployee(@RequestBody @Valid EmployeeDto employeeDto) {
         return employeeService.createEmployee(employeeDto);
     }
 

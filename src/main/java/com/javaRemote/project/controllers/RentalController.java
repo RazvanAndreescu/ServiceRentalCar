@@ -23,8 +23,8 @@ public class RentalController {
     }
 
     @PostMapping("/")
-    public Rental createRental(@RequestBody @Valid Rental rental) {
-        return rentalService.createRental(rental);
+    public Rental createRental(@RequestBody @Valid RentalDto rentalDto) {
+        return rentalService.createRental(rentalDto);
     }
 
     @PutMapping("/{rentalId}")

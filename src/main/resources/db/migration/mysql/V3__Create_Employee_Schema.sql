@@ -9,11 +9,11 @@ CREATE TABLE IF NOT EXISTS employee
     VARCHAR
 (
     30
-),
+) NOT NULL,
     roleEmployee VARCHAR
 (
     30
-),
+) NOT NULL,
     branchId INT,
     FOREIGN KEY
 (

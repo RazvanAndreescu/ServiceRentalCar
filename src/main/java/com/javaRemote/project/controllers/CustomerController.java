@@ -5,10 +5,11 @@ import com.javaRemote.project.database.entities.Customer;
 import com.javaRemote.project.service.CustomerService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/customers")
+@RequestMapping("/customer")
 public class CustomerController {
 
     private CustomerService customerService;
@@ -24,7 +25,7 @@ public class CustomerController {
 
     @PostMapping("/")
     @ResponseBody
-    public Customer createCustomer(@RequestBody CustomerDto customerDto) {
+    public Customer createCustomer(@RequestBody @Valid CustomerDto customerDto) {
         return customerService.createCustomer(customerDto);
     }
 

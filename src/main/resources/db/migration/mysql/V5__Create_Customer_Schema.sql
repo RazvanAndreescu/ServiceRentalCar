@@ -9,11 +9,11 @@ CREATE TABLE IF NOT EXISTS customer
     VARCHAR
 (
     30
-),
+) NOT NULL,
     email VARCHAR
 (
     30
-),
+) NOT NULL,
     drivingExperience INT
 
     ) ENGINE=InnoDB DEFAULT CHARSET=UTF8;

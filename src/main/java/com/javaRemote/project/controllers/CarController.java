@@ -6,10 +6,11 @@ import com.javaRemote.project.database.entities.Car;
 import com.javaRemote.project.service.CarService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/cars")
+@RequestMapping("/car")
 public class CarController {
 
     private CarService carService;
@@ -25,7 +26,7 @@ public class CarController {
 
     @PostMapping("/")
     @ResponseBody
-    public Car createCar(@RequestBody CarDto carDto) {
+    public Car createCar(@RequestBody @Valid CarDto carDto) {
         return carService.create(carDto);
     }
 

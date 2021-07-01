@@ -18,8 +18,8 @@ public class RentalService {
         this.rentalRepository = rentalRepository;
     }
 
-    public Rental createRental(Rental rental) {
-            return rentalRepository.save(rental);
+    public Rental createRental(RentalDto rentalDto) {
+            return rentalRepository.save(convertRentalDtoToRental(rentalDto));
     }
 
     public List<RentalDto> getAllRentals() {

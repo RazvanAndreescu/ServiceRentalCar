@@ -3,12 +3,29 @@ package com.javaRemote.project.database.dto;
 
 import lombok.Getter;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 @Getter
 public class RentalDto {
+
     private Integer rentalId;
+
+    @NotNull (message = "nameRental is required")
+    @Size(min=2, max=30)
     private String nameRental;
+
+    @NotNull (message = "internetDomain is required")
+    @Size(min = 2, max = 30)
     private String internetDomain;
+
+    @NotNull(message = "contactAddress is required")
+    @Size(max = 50, message = "contactAddress is too long")
     private String contactAddress;
+
+    @NotNull(message = "owner is required")
+    @Size(min = 2, max = 30)
     private String owner;
 
     public RentalDto setRentalId(int rentalId) {

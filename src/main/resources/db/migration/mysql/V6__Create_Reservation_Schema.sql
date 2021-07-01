@@ -7,11 +7,11 @@ CREATE TABLE IF NOT EXISTS reservation
     AUTO_INCREMENT,
 
     startDate
-    DATE,
+    DATE NOT NULL,
     endDate
-    DATE,
+    DATE NOT NULL,
     price
-    INT,
+    INT NOT NULL,
     branchId
     INT,
     FOREIGN

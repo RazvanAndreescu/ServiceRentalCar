@@ -13,8 +13,8 @@ import java.util.Optional;
 
 @Service
 public class EmployeeService {
-    private EmployeeRepository employeeRepository;
-    private BranchRepository branchRepository;
+    private final EmployeeRepository employeeRepository;
+    private final BranchRepository branchRepository;
 
     public EmployeeService(EmployeeRepository employeeRepository, BranchRepository branchRepository) {
         this.employeeRepository = employeeRepository;

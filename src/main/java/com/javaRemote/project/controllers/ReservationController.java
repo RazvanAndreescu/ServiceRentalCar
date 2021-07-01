@@ -1,13 +1,15 @@
 package com.javaRemote.project.controllers;
 
+import com.javaRemote.project.database.dto.ReservationDto;
 import com.javaRemote.project.database.entities.Reservation;
 import com.javaRemote.project.service.ReservationService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/reservations")
+@RequestMapping("/reservation")
 public class ReservationController {
 
     private ReservationService reservationService;
@@ -16,20 +18,20 @@ public class ReservationController {
         this.reservationService = reservationService;
     }
 
-    @GetMapping("/")
-    public List<Reservation> printAllCustomers() {
-        return reservationService.getAllReservation();
-    }
-
     @PostMapping("/")
     @ResponseBody
-    public Reservation crateReservation(@RequestBody Reservation reservation) {
-        return reservationService.create(reservation);
+    public Reservation crateReservation(@RequestBody @Valid ReservationDto reservationDto) {
+        return reservationService.create(reservationDto);
+    }
+
+    @GetMapping("/")
+    public List<ReservationDto> printAllCustomers() {
+        return reservationService.getAllReservation();
     }
 
     @PutMapping("/{reservationId}")
     @ResponseBody
-    public boolean updateReservation(@PathVariable int reservationId, @RequestBody Reservation reservationDto) {
+    public boolean updateReservation(@PathVariable int reservationId, @RequestBody ReservationDto reservationDto) {
         Reservation reservationBeforeUpdate = new Reservation(reservationService.getReservationById(reservationId));
 
         if (reservationService.getReservationById(reservationId) == null) {

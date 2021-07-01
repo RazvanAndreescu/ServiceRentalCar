@@ -5,10 +5,11 @@ import com.javaRemote.project.database.entities.Branch;
 import com.javaRemote.project.service.BranchService;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/branches")
+@RequestMapping("/branch")
 public class BranchController {
 
     private BranchService branchService;
@@ -24,7 +25,7 @@ public class BranchController {
 
     @PostMapping("/")
     @ResponseBody
-    public Branch createBranch(@RequestBody BranchDto branchDto) {
+    public Branch createBranch(@RequestBody @Valid BranchDto branchDto) {
         return branchService.createBranch(branchDto);
     }
 

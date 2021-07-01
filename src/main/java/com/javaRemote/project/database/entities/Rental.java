@@ -24,11 +24,9 @@ public class Rental {
     private Integer rentalId;
 
     @Column(name = "namerental")
-    @NotNull(message = "nameRental is required")
     private String nameRental;
 
     @Column(name = "internetdomain")
-    @NotNull(message = "internetDomain is required")
     private String internetDomain;
 
     @Column(name = "contactaddress")

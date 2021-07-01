@@ -43,8 +43,8 @@ public class Reservation {
 
     public Reservation(Reservation reservation) {
         this.reservationId = reservation.getReservationId();
-        this.startDate = reservation.getStartDate();
-        this.endDate = reservation.getEndDate();
+        this.startDate = Date.valueOf(reservation.getStartDate());
+        this.endDate = Date.valueOf(reservation.getEndDate());
         this.price = reservation.getPrice();
         this.branch = reservation.getBranch();
         this.customer = reservation.getCustomer();
@@ -84,6 +84,20 @@ public class Reservation {
     public Reservation setCar(Car car) {
         this.car = car;
         return this;
+    }
+
+    public String getStartDate() {
+        if (startDate != null) {
+            return String.valueOf(startDate);
+        }
+        return null;
+    }
+
+    public String getEndDate() {
+        if (endDate != null) {
+            return String.valueOf(endDate);
+        }
+        return null;
     }
 
     @Override

@@ -13,8 +13,8 @@ import java.util.Optional;
 
 @Service
 public class BranchService {
-    private BranchRepository branchRepository;
-    private RentalRepository rentalRepository;
+    private final BranchRepository branchRepository;
+    private final RentalRepository rentalRepository;
 
     public BranchService(BranchRepository branchRepository, RentalRepository rentalRepository) {
         this.branchRepository = branchRepository;
